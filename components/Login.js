@@ -1,16 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
 export const Login = () => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
   return (
     <>
       <div class="w-full max-w-xs">
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form class="bg-gray-800 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
+            <p class="text-xl mb-2 mt-0 text-white font-bold">Account Login</p>
             <label
-              class="block text-gray-700 text-l font-bold mb-2"
+              class="block text-white text-l font-bold mb-2"
               for="username"
             >
               Username
@@ -26,7 +26,7 @@ export const Login = () => {
           </div>
           <div class="mb-6">
             <label
-              class="block text-gray-700 text-l font-bold mb-2"
+              class="block text-white text-l font-bold mb-2"
               for="password"
             >
               Password
