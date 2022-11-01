@@ -1,4 +1,3 @@
-import { IoLogoOctocat } from "react-icons/Io";
 export const NavbarSignIn = () => {
   return (
     <>
