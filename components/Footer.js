@@ -1,4 +1,3 @@
-import { IoLogoOctocat } from "react-icons/Io";
 import Image from "next/image";
 
 const Footer = () => {
@@ -16,7 +15,7 @@ const Footer = () => {
         </h1>
         <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
           <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
+            <a href="#" class="mr-4 hover:underline md:mr-6">
               About Us
             </a>
           </li>
