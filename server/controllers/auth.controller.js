@@ -30,6 +30,7 @@ exports.signup = async (req, res) => {
       res.status(500).send({
         message: "all input required",
       });
+      console.log(err);
       return;
     } else {
       res.status(200).json({
@@ -44,15 +45,16 @@ exports.signup = async (req, res) => {
 exports.signin = async (req, res) => {
   try {
     // Get user input
+
     const { email, pass } = req.body;
+    const user = await userModel.findOne({ email });
 
     // Validate user input
     if (!(email && pass)) {
-      res.status(400).send("All input is required");
+      res.status(400).send("user not found");
     }
 
     // Validate if user exist in our database
-    const user = await userModel.findOne({ email });
 
     if (user && (await bcrypt.compare(pass, user.pass))) {
       // Create token
@@ -68,7 +70,7 @@ exports.signin = async (req, res) => {
       user.token = token;
 
       // user success msg
-      res.status(200).send({
+      res.status(200).json({
         User: {
           id: user._id,
           email: user.email,
@@ -82,5 +84,25 @@ exports.signin = async (req, res) => {
     res.status(400).send("Invalid Credentials");
   } catch (err) {
     console.log(err);
+  }
+};
+
+//token controller
+
+exports.hiddenContent = async (req, res) => {
+  if (!req.user) {
+    res.status(403).send({
+      message: "Token Invalid",
+    });
+  }
+  console.log(req.user);
+  if (req.user.role == "artist") {
+    res.status(200).send({
+      message: "Success! Buyer",
+    });
+  } else {
+    res.status(403).send({
+      message: "Unauthorized access",
+    });
   }
 };

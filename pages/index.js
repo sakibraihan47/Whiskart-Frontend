@@ -5,11 +5,12 @@ import { NavbarArtist } from "../components/NavbarArtist";
 import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
 import SignUp from "../components/Signup";
+import Login from "../components/Login";
 
 export default function Home() {
   return (
     <>
-      <SignUp />
+      <Login />
     </>
   );
 }
