@@ -1,5 +1,5 @@
-const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
+const userModel = require("../models/user.model");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -7,16 +7,18 @@ const verifyToken = (req, res, next) => {
   if (
     req.headers &&
     req.headers.authorization &&
-    req.headers.authorization.split(" ")[0] === "JWT"
+    req.headers.authorization.split(" ")[0] === "Bearer"
   ) {
     jwt.verify(
       req.headers.authorization.split(" ")[1],
       process.env.API_SECRET,
       function (err, decode) {
-        if (err) req.user = undefined;
+        if (err) req.userModel = undefined;
+
         userModel
           .findOne({
             _id: decode.id,
+            role: decode.role,
           })
           .exec((err, user) => {
             if (err) {
@@ -24,14 +26,14 @@ const verifyToken = (req, res, next) => {
                 message: err,
               });
             } else {
-              req.user = user;
+              req.userModel = user;
               next();
             }
           });
       }
     );
   } else {
-    req.user = undefined;
+    req.userModel = undefined;
     next();
   }
 };

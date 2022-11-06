@@ -1,14 +1,8 @@
-import connectDb from "../../server/middleware/connection.js";
-import User from "../../server/models.js";
+import axios from "axios";
 
-const handler = async (req, res) => {
-  if (req.method == "POST") {
-    console.log(req.body);
-    let _user = new User(req.body);
-    _user.save();
-    res.status(200).json({ success: "Success" });
-  } else {
-    res.status(400).json({ error: "Fail" });
-  }
+export const signup = async (payload) => {
+  try {
+    const res = await axios.post("http://localhost:3002/signup", payload);
+    console.log({ res });
+  } catch (error) {}
 };
-export default connectDb(handler);

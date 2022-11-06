@@ -1,15 +1,61 @@
 import React from "react";
+import axios from "axios";
+import Link from "next/link";
 import { useState, useEffect } from "react";
+import { signup } from "../pages/api/signup";
 
 export const Signup = () => {
+  // const [user, setUser] = useState({
+  //   email: "",
+  // });
+  // const handleUser = (key, value) => setUser({ ...user, [key]: value });
+
   const [fname, setFirstName] = useState("");
   const [lname, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [type, setUserType] = useState("");
+  const [role, setRole] = useState("");
 
+  const handleChange = (event) => {
+    if (event.target.name == "firstName") {
+      setFirstName(event.target.value);
+    } else if (event.target.name == "lastName") {
+      setLastName(event.target.value);
+    } else if (event.target.name == "email") {
+      setEmail(event.target.value);
+    } else if (event.target.name == "pass") {
+      setPass(event.target.value);
+    } else if (event.target.id == "artist") {
+      setRole(event.target.value);
+    }
+  };
   const handleSubmit = async (event) => {
-    const form = { fname, lname, email, pass, type };
+    event.preventDefault();
+
+    const payload = { fname, lname, email, pass, role };
+    console.log(payload);
+    //const res = await axios.post("http://localhost:3002/signup", payload);
+    try {
+      let res = await fetch("http://localhost:3002/signup", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      let response = await res.json();
+      console.log("response", response);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // setFirstName("");
+    // setLastName("");
+    // setEmail("");
+    // setPass("");
+    // setRole("");
   };
 
   return (
@@ -19,7 +65,11 @@ export const Signup = () => {
           <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Account Creation
           </h1>
-          <form class="space-y-4 md:space-y-6" action="#">
+          <form
+            onSubmit={handleSubmit}
+            class="space-y-4 md:space-y-6"
+            method="POST"
+          >
             <div>
               <label
                 for="f_name"
@@ -28,12 +78,14 @@ export const Signup = () => {
                 First Name
               </label>
               <input
+                value={fname}
                 type="firstName"
                 name="firstName"
                 id="firstName"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-200 focus:border-blue-600 block w-full p-2.5"
                 placeholder="First Name"
                 required=""
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -44,12 +96,14 @@ export const Signup = () => {
                 Last Name
               </label>
               <input
+                value={lname}
                 type="lastName"
                 name="lastName"
                 id="lastName"
                 class="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-blue-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="Last Name"
                 required=""
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -66,6 +120,7 @@ export const Signup = () => {
                 class="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="hello@gmail.com"
                 required=""
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -77,11 +132,12 @@ export const Signup = () => {
               </label>
               <input
                 type="password"
-                name="password"
+                name="pass"
                 id="password"
                 placeholder="••••••••"
                 class="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 required=""
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -103,11 +159,13 @@ export const Signup = () => {
             <div class="flex justify-center">
               <div class="flex items-center h-5">
                 <input
+                  value={"artist"}
                   id="artist"
                   aria-describedby="artist"
                   type="checkbox"
                   class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   required=""
+                  onChange={handleChange}
                 />
               </div>
 
@@ -118,11 +176,13 @@ export const Signup = () => {
               </div>
               <div class="flex items-center h-5 ml-5">
                 <input
+                  value={"buyer"}
                   id="buyer"
                   aria-describedby="buyer"
                   type="checkbox"
                   class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                   required=""
+                  onChange={handleChange}
                 />
               </div>
 
