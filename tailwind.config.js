@@ -1,3 +1,5 @@
+const { urlencoded } = require("express");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -5,7 +7,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        hero: (url = "/public/t-home.png"),
+      },
+    },
   },
   plugins: [],
 };

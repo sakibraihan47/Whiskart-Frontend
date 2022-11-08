@@ -1,3 +1,5 @@
+import { NavbarArtist } from "./NavbarArtist";
+import Footer from "./Footer";
 const LayoutArtist = ({ children }) => {
   return (
     <>

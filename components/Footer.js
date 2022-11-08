@@ -2,48 +2,39 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900">
-      <div className="sm:flex sm:items-center sm:justify-between rounded-lg justify-between shadow md:px-6 md:py-2 bg-gray-900">
-        <a href="#" className="flex items-center mb-4 sm:mb-0">
-          <Image src="/tree.png" width={20} height={20} />
-          <span className="self-center text-2xl font-semibold dark:text-white">
-            whiskart
+    <footer class=" p-2 bg-white  shadow md:px-6 md:py-8 dark:bg-gray-900">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0">
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            WHiSKART
           </span>
-          <h1 className="px-2 text-gray-500 text-2x ">
-            platform for art enthusiasts
+          <h1 className=" px-2 text-pink-600 font-bold ">
+            imagine. create. share.
           </h1>
         </a>
-        <h1 className="px-2 text-pink-300 font-bold text-2x ">
-          imagine. create. share.
-        </h1>
-        <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+        <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
+            <a href="#" class="mr-4 hover:underline md:mr-6 ">
               About Us
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
+            <a href="#" class="mr-4 hover:underline md:mr-6">
               Privacy Policy
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
+            <a href="#" class="mr-4 hover:underline md:mr-6 ">
               Gallery
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <a href="#" class="hover:underline">
               Contact
             </a>
           </li>
         </ul>
-      </div>
-      <div className="py-6 px-4 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-        <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-          © 2022 <a href="#">Whiskart™</a>. All Rights Reserved.
-        </span>
-        <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0">
+        <div className="flex items-center space-x-6 sm:justify-center md:mt-0">
           <a
             href="#"
             className="text-gray-400 hover:text-gray-900 dark:hover:text-pink-400"
@@ -132,6 +123,15 @@ const Footer = () => {
           </a>
         </div>
       </div>
+
+      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+      <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+        © 2022{" "}
+        <a href="https://flowbite.com/" class="hover:underline">
+          Whiskart™
+        </a>
+        . All Rights Reserved.
+      </span>
     </footer>
   );
 };
