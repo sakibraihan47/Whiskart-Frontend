@@ -46,16 +46,16 @@ export const Signup = () => {
       console.log(error);
     }
 
-    // setFirstName("");
-    // setLastName("");
-    // setEmail("");
-    // setPass("");
-    // setRole("");
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPass("");
+    setRole("");
   };
 
   return (
     <>
-      <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Account Creation
@@ -153,45 +153,46 @@ export const Signup = () => {
                 required=""
               />
             </div>
-            <div className="flex items-center pl-4 rounded border border-gray-700">
-              <input
-                checked={role === "buyer"}
-                value="buyer"
-                id="bordered-radio-1"
-                type="radio"
-                name="bordered-radio"
-                onChange={(e) => {
-                  setRole(e.target.value);
-                }}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                for="artist"
-                className="py-4 ml-2 w-full text-sm font-medium text-gray-300"
-              >
-                You are a Buyer
-              </label>
+            <div className="flex items-center justify-around">
+              <div className="flex items-center pl-4 pr-4 rounded border border-blue-700">
+                <input
+                  checked={role === "buyer"}
+                  value="buyer"
+                  id="bordered-radio-1"
+                  type="radio"
+                  name="bordered-radio"
+                  onChange={(e) => {
+                    setRole(e.target.value);
+                  }}
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="artist"
+                  className="py-4 ml-2 w-full text-sm font-medium text-gray-300"
+                >
+                  You are a Buyer
+                </label>
+              </div>
+              <div className="flex items-center pl-4 pr-4 rounded border border-green-700">
+                <input
+                  checked={role === "artist"}
+                  value="artist"
+                  id="bordered-radio-2"
+                  type="radio"
+                  name="bordered-radio"
+                  onChange={(e) => {
+                    setRole(e.target.value);
+                  }}
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="buyer"
+                  className="py-4 ml-2 w-full text-sm font-medium text-gray-300"
+                >
+                  You are an Artist
+                </label>
+              </div>
             </div>
-            <div className="flex items-center pl-4 rounded border border-gray-700">
-              <input
-                checked={role === "artist"}
-                value="artist"
-                id="bordered-radio-2"
-                type="radio"
-                name="bordered-radio"
-                onChange={(e) => {
-                  setRole(e.target.value);
-                }}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
-              <label
-                for="buyer"
-                className="py-4 ml-2 w-full text-sm font-medium text-gray-300"
-              >
-                You are an Artist
-              </label>
-            </div>
-
             <button
               type="submit"
               className="w-full text-white bg-red-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
