@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const AuthRouter = require("./routes/auth.routes.js");
-const ArtworkRouter = require("./routes/artworkpost.routes.js");
+const ArtworkRouter = require("./routes/artwork.routes.js");
 const app = express();
 const cors = require("cors");
 
