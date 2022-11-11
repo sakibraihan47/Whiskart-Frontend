@@ -1,11 +1,13 @@
 const artworkModel = require("../models/artwork.model");
+
 const dotenv = require("dotenv");
 dotenv.config();
 
 exports.postArtwork = async (req, res) => {
+  console.log("user", req.user);
   const artwork = new artworkModel({
     name: req.body.name,
-    artist: req.body.artist,
+    artist: req.user.user_id,
     des: req.body.des,
     canvas: req.body.canvas,
     genre: req.body.genre,
@@ -14,7 +16,6 @@ exports.postArtwork = async (req, res) => {
     price: req.body.price,
     img: req.body.img,
   });
-
   artwork.save((err, artwork) => {
     if (err) {
       res.status(500).send({
