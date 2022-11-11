@@ -7,11 +7,9 @@ import Signup from "../components/Signup";
 export default function signup() {
   return (
     <>
-      <NavbarSignIn />
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto  bg-gradient-to-r from-gray-800 to-purple-900">
+      <div className="flex h-screen items-center m-b justify-center px-6   bg-gradient-to-r from-gray-800 to-purple-900">
         <Signup />
       </div>
-      <Footer />
     </>
   );
 }

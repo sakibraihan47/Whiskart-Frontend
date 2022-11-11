@@ -11,6 +11,10 @@ module.exports = {
       backgroundImage: {
         hero: (url = "/public/t-home.png"),
       },
+
+      fontFamily: {
+        raleway: ["Raleway", "sans-serif"],
+      },
     },
   },
   plugins: [],

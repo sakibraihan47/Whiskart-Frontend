@@ -33,7 +33,7 @@ const ArtworkPost = () => {
     event.preventDefault();
 
     const payload = { name, des, canvas, price, qty, genre, color, img };
-    console.log(payload);
+    console.log("Payload:", payload);
 
     try {
       let res = await fetch("http://localhost:3002/postartwork", {
@@ -41,11 +41,13 @@ const ArtworkPost = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify(payload),
       });
 
       let response = await res.json();
+      console.log("token", localStorage.getItem("token"));
       console.log("response", response);
     } catch (error) {
       console.log(error);

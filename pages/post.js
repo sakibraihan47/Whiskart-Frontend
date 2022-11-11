@@ -1,6 +1,7 @@
 import React from "react";
 import ArtworkPost from "../components/ArtworkPost";
 
+import { NavbarArtist } from "../components/NavbarArtist";
 export default function post() {
   return (
     <>

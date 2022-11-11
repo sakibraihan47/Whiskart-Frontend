@@ -1,8 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useLogin } from "../hooks/useLogin";
 export const Login = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const { login, error, isLoading } = useLogin();
 
   const handleChange = (event) => {
     if (event.target.name == "email") {
@@ -14,23 +18,27 @@ export const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const payload = { email, pass };
+    await login(email, pass);
+    router.push("/homepage");
 
-    try {
-      let res = await fetch("http://localhost:3002/signin", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+    // const payload = { email, pass };
 
-      let response = await res.json();
-      console.log("Success:", response);
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   let res = await fetch("http://localhost:3002/signin", {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(payload),
+    //   });
+
+    //   let response = await res.json();
+    //   console.log("Success:", response);
+    //   router.push("/homepage");
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     // setFirstName("");
     // setLastName("");

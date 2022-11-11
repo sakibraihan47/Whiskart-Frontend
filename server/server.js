@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Router = require("./routes/auth.routes.js");
+const AuthRouter = require("./routes/auth.routes.js");
+const ArtworkRouter = require("./routes/artworkpost.routes.js");
 const app = express();
 const cors = require("cors");
 
@@ -17,8 +18,8 @@ db.once("open", function () {
   console.log("Connected successfully");
 });
 
-app.use(Router);
-
+app.use(AuthRouter);
+app.use(ArtworkRouter);
 app.listen(3002, () => {
   console.log("Server is running at port 3002");
 });

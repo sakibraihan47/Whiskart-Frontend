@@ -1,12 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export const Signup = () => {
   // const [user, setUser] = useState({
   //   email: "",
   // });
   // const handleUser = (key, value) => setUser({ ...user, [key]: value });
-
+  const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +25,7 @@ export const Signup = () => {
       setPass(event.target.value);
     }
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -42,6 +44,7 @@ export const Signup = () => {
 
       let response = await res.json();
       console.log("response", response);
+      router.push("/login");
     } catch (error) {
       console.log(error);
     }
@@ -137,24 +140,9 @@ export const Signup = () => {
                 onChange={handleChange}
               />
             </div>
-            <div>
-              <label
-                for="confirm-password"
-                className="block mb-2 text-sm font-medium text-white"
-              >
-                Confirm password
-              </label>
-              <input
-                type="password"
-                name="confirm-password"
-                id="confirm-password"
-                placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-blue-600 block w-full p-2.5"
-                required=""
-              />
-            </div>
+
             <div className="flex items-center justify-around">
-              <div className="flex items-center pl-4 pr-4 rounded border border-blue-700">
+              <div className="">
                 <input
                   checked={role === "buyer"}
                   value="buyer"
@@ -164,16 +152,16 @@ export const Signup = () => {
                   onChange={(e) => {
                     setRole(e.target.value);
                   }}
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-pink-600 dark:ring-offset-gray-800 focus:ring-2"
                 />
                 <label
                   for="artist"
-                  className="py-4 ml-2 w-full text-sm font-medium text-gray-300"
+                  className=" text-bold text-red-400 py-1 ml-2 w-full text-sm font-medium text-gray-300"
                 >
-                  You are a Buyer
+                  Buyer
                 </label>
               </div>
-              <div className="flex items-center pl-4 pr-4 rounded border border-green-700">
+              <div className="">
                 <input
                   checked={role === "artist"}
                   value="artist"
@@ -187,9 +175,9 @@ export const Signup = () => {
                 />
                 <label
                   for="buyer"
-                  className="py-4 ml-2 w-full text-sm font-medium text-gray-300"
+                  className="text-bold text-blue-400 py-4 ml-2 w-full text-sm font-medium text-gray-300"
                 >
-                  You are an Artist
+                  Artist
                 </label>
               </div>
             </div>
