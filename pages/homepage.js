@@ -1,5 +1,3 @@
-import { NavbarArtist } from "../components/NavbarArtist";
-
 const homepage = () => {
   return (
     <>

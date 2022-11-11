@@ -1,7 +1,6 @@
 import React from "react";
-import Footer from "../components/Footer";
-import Login from "../components/Login";
-import { NavbarSignIn } from "../components/NavbarSignIn";
+
+import Login from "../components/Auth/Login";
 
 export default function login() {
   return (

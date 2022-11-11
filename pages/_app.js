@@ -1,5 +1,5 @@
-import Footer from "../components/Footer";
-import { NavbarArtist } from "../components/NavbarArtist";
+import Footer from "../components/Footer/Footer";
+import { NavbarArtist } from "../components/Navbar/NavbarArtist";
 import { AuthContextProvider } from "../context/GlobalState";
 import "../styles/index.css";
 

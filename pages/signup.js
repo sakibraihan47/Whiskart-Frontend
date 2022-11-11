@@ -1,8 +1,6 @@
 import React from "react";
-import Footer from "../components/Footer";
-import { NavbarSignIn } from "../components/NavbarSignIn";
 
-import Signup from "../components/Signup";
+import Signup from "../components/Auth/Signup";
 
 export default function signup() {
   return (
