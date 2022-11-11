@@ -5,18 +5,13 @@ const { signin } = require("../controllers/auth.controller");
 const { hiddenContent } = require("../controllers/auth.controller");
 const auth = require("../middleware/auth");
 const router = express.Router();
-
 //signup
-
+// router.use(requireAuth);
 router.post("/signup", signup);
 
 //signin
 
 router.post("/signin", signin);
-
-//artwork post
-
-router.post("/postartwork", postArtwork);
 
 //token verification
 

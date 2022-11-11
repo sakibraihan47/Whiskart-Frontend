@@ -16,7 +16,11 @@ exports.signup = async (req, res) => {
 
   //token code
   const token = jwt.sign(
-    { user_id: user._id, email: user.email, role: user.role },
+    {
+      user_id: user._id,
+      email: user.email,
+      role: user.role,
+    },
     process.env.API_SECRET,
     {
       expiresIn: "2h",
@@ -75,6 +79,7 @@ exports.signin = async (req, res) => {
           id: user._id,
           email: user.email,
           role: user.role,
+          firstName: user.firstName,
         },
         message: "Login Success!",
         accessToken: token,
