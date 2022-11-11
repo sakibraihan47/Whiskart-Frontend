@@ -1,4 +1,4 @@
-<footer className="bg-white dark:bg-gray-900">
+<footer className=" sticky bg-white dark:bg-gray-900">
   <div className="sm:flex sm:items-center sm:justify-between rounded-lg justify-between shadow md:px-6 md:py-2 bg-gray-900">
     <a href="#" className="flex items-center mb-4 sm:mb-0">
       <Image src="/tree.png" width={20} height={20} />

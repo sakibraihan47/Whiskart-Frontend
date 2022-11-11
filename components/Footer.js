@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer class=" p-2 bg-white  shadow md:px-6 md:py-8 dark:bg-gray-900">
+    <footer class="h-4 fixed p-2 bg-white w-full  shadow md:px-6 md:py-8 dark:bg-gray-900 bottom-0">
       <div class="sm:flex sm:items-center sm:justify-between">
         <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0">
           <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
