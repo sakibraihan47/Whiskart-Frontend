@@ -12,19 +12,26 @@ const ArtworkPost = () => {
   const [qty, setQty] = useState();
   const [genre, setGenre] = useState();
   const [color, setColor] = useState();
-  const [img, setUrl] = useState();
 
-  const uploadImage = () => {
+  const uploadImage = async (event) => {
+    event.preventDefault();
+
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name}`);
-    uploadBytes(imageRef, imageUpload).then(() => {
+    uploadBytes(imageRef, imageUpload).then((byte) => {
+      console.log(
+        "🚀 ~ file: ArtworkPost.js ~ line 22 ~ uploadBytes ~ byte",
+        byte
+      );
+
       alert("Image has been Uploaded");
     });
-    () => {
-      getDownloadURL(imageRef).then((url) => {
-        setUrl(url);
-      });
-    };
+
+    getDownloadURL(imageRef).then((url) => {
+      // return resolve(url);
+      handleSubmit(url);
+      return url;
+    });
   };
 
   const handleChange = (event) => {
@@ -44,12 +51,10 @@ const ArtworkPost = () => {
       setColor(event.target.value);
     }
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (url) => {
+    // Promise.resolve(uploadImage).then((img) => console.log("image", img));
 
-    await uploadImage();
-
-    const payload = { name, des, canvas, price, qty, genre, color, img };
+    const payload = { name, des, canvas, price, qty, genre, color, img: url };
     console.log("Payload:", payload);
 
     try {
@@ -74,7 +79,7 @@ const ArtworkPost = () => {
   return (
     <>
       <div className="p-6 bg-blue-100 rounded  ">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={uploadImage}>
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="name"
