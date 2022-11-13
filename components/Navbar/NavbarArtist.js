@@ -1,15 +1,14 @@
-import { useAuthContext } from "../../hooks/useAuthContext";
+// import { useAuthContext } from "../../hooks/useAuthContext";
 import { useLogout } from "../../hooks/useLogout.js";
+import { AuthContext } from "../../context/GlobalState";
+import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const NavbarArtist = () => {
   const { logout } = useLogout();
-  const { user } = useAuthContext();
-  console.log(
-    "🚀 ~ file: NavbarArtist.js ~ line 8 ~ NavbarArtist ~ user",
-    user
-  );
+
+  const { user } = useContext(AuthContext);
 
   const handleClick = () => {
     logout();
@@ -17,7 +16,7 @@ export const NavbarArtist = () => {
 
   return (
     <>
-      {user && user.User.role == "artist" && (
+      {user && user?.role == "artist" && (
         <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="#" className="flex items-center">
@@ -29,10 +28,10 @@ export const NavbarArtist = () => {
             <div className="flex md:order-2">
               <div className="block relative">
                 <a className="text-blue-200 uppercase text-xl p-2 inline-flex items-center">
-                  {user.User.firstName}
+                  {user.firstName}
                 </a>
                 <a className="text-white text-xl p-2 inline-flex items-center">
-                  {user.User.email}
+                  {user.email}
                 </a>
               </div>
               <button
@@ -110,7 +109,7 @@ export const NavbarArtist = () => {
           </div>
         </nav>
       )}
-      {user && user.User.role == "buyer" && (
+      {user && user?.role == "buyer" && (
         <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="#" className="flex items-center">
@@ -122,10 +121,10 @@ export const NavbarArtist = () => {
             <div className="flex md:order-2">
               <div className="block relative">
                 <a className="text-purple-200 uppercase text-xl p-2 inline-flex items-center">
-                  {user.User.firstName}
+                  {user.firstName}
                 </a>
                 <a className="text-white text-xl p-2 inline-flex items-center">
-                  {user.User.email}
+                  {user.email}
                 </a>
               </div>
               <button

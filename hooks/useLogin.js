@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/GlobalState";
+import Cookies from "js-cookie";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { login: contextLogin } = useContext(AuthContext);
 
   const login = async (email, pass) => {
     setIsLoading(true);
@@ -23,11 +24,12 @@ export const useLogin = () => {
     }
     if (response.ok) {
       // save the user to local storage
-      localStorage.setItem("user", JSON.stringify(json));
-      localStorage.setItem("token", json.accessToken);
+      Cookies.set("user", JSON.stringify(json.User));
+      Cookies.set("token", json.accessToken);
 
       // update the auth context
-      dispatch({ type: "LOGIN", payload: json });
+      // dispatch({ type: "LOGIN", payload: json });
+      contextLogin(json);
 
       // update loading state
       setIsLoading(false);

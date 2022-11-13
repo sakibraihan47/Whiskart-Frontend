@@ -86,7 +86,7 @@ exports.signin = async (req, res) => {
       });
     }
     // user fail msg
-    res.status(400).send("Invalid Credentials");
+    else res.status(400).send("Invalid Credentials");
   } catch (err) {
     console.log(err);
   }

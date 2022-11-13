@@ -2,7 +2,9 @@ const authReducers = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       return {
-        user: action.payload,
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
       };
     case "LOGOUT":
       return { user: null, token: null };

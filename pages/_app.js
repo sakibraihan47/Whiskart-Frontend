@@ -7,10 +7,9 @@ import "../styles/index.css";
 function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <ArtworkState>
-        <NavbarArtist />
-        <Component {...pageProps} /> <Footer />{" "}
-      </ArtworkState>
+      {/* <ArtworkState> */}
+      <NavbarArtist />
+      <Component {...pageProps} /> <Footer /> {/* </ArtworkState> */}
     </AuthContextProvider>
   );
 }

@@ -1,14 +1,18 @@
-import { useAuthContext } from "./useAuthContext";
+import { AuthContext } from "../context/GlobalState";
+import { useContext } from "react";
+import Cookies from "js-cookie";
 
 export const useLogout = () => {
-  const { dispatch } = useAuthContext();
+  // const { logout: contextLogout } = useContext(AuthContext);
 
   const logout = () => {
     // remove user from storage
-    localStorage.removeItem("user");
+    Cookies.remove("user");
+    Cookies.remove("token");
 
     // dispatch logout action
-    dispatch({ type: "LOGOUT" });
+    // dispatch({ type: "LOGOUT", payload: null });
+    // contextLogout(json);
   };
 
   return { logout };
