@@ -5,7 +5,7 @@ const authReducers = (state, action) => {
         user: action.payload,
       };
     case "LOGOUT":
-      return { user: null };
+      return { user: null, token: null };
     default:
       return state;
   }

@@ -1,6 +1,10 @@
 import { useState } from "react";
+import storage from "../firebase";
+import Cookies from "js-cookie";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const ArtworkPost = () => {
+  const [imageUpload, setImageUpload] = useState();
   const [name, setName] = useState();
   const [des, setDes] = useState();
   const [canvas, setCanvas] = useState();
@@ -9,6 +13,19 @@ const ArtworkPost = () => {
   const [genre, setGenre] = useState();
   const [color, setColor] = useState();
   const [img, setUrl] = useState();
+
+  const uploadImage = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name}`);
+    uploadBytes(imageRef, imageUpload).then(() => {
+      alert("Image has been Uploaded");
+    });
+    () => {
+      getDownloadURL(imageRef).then((url) => {
+        setUrl(url);
+      });
+    };
+  };
 
   const handleChange = (event) => {
     if (event.target.name == "name") {
@@ -25,12 +42,12 @@ const ArtworkPost = () => {
       setGenre(event.target.value);
     } else if (event.target.name == "color") {
       setColor(event.target.value);
-    } else if (event.target.name == "img") {
-      setUrl(event.target.value);
     }
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    await uploadImage();
 
     const payload = { name, des, canvas, price, qty, genre, color, img };
     console.log("Payload:", payload);
@@ -41,13 +58,13 @@ const ArtworkPost = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${Cookies.get("token")}`,
         },
         body: JSON.stringify(payload),
       });
 
       let response = await res.json();
-      console.log("token", localStorage.getItem("token"));
+      console.log("token", Cookies.get("token"));
       console.log("response", response);
     } catch (error) {
       console.log(error);
@@ -187,24 +204,7 @@ const ArtworkPost = () => {
                 Color
               </label>
             </div>
-            <div className="relative z-0 mb-6 w-full group">
-              <input
-                type="text"
-                name="img"
-                id="img"
-                className="block py-2.5 px-0 w-full text-sm dark:text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-                value={img}
-                onChange={handleChange}
-              />
-              <label
-                htmlFor="img"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-              >
-                URL
-              </label>
-            </div>
+
             <div className="relative z-0 mb-2 w-full group">
               <label
                 className="block mb-2 text-sm dark:text-gray-900"
@@ -216,6 +216,9 @@ const ArtworkPost = () => {
                 className="block w-full text-sm  bg-gray-50 rounded-sm  border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-blue-400"
                 id="file_input"
                 type="file"
+                onChange={(event) => {
+                  setImageUpload(event.target.files[0]);
+                }}
               ></input>
             </div>
           </div>

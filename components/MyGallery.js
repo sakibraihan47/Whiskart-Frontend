@@ -1,10 +1,7 @@
-export async function getServerSideProps() {
-  const res = await fetch("http://localhost:3002/getartwork");
-  const artwork = await res.json();
-  return { props: { artwork } };
-}
+import getAllArtwork from "../context/Artwork/artworkState";
 
-const MyGallery = (artwork) => {
+function MyGallery({ artworks }) {
+  console.log("this", artworks);
   return (
     <>
       <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
@@ -43,14 +40,14 @@ const MyGallery = (artwork) => {
                 scope="row"
                 class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {artwork.name}
+                gfdg
               </th>
-              <td class="py-4 px-6">{artwork.des}</td>
-              <td class="py-4 px-6">{artwork.color}</td>
-              <td class="py-4 px-6">{artwork.genre}</td>
-              <td class="py-4 px-6">{artwork.canvas}</td>
-              <td class="py-4 px-6">{artwork.price}</td>
-              <td class="py-4 px-6">{artwork.posted}</td>
+              <td class="py-4 px-6">dgdfgdf</td>
+              <td class="py-4 px-6">dfgfdg</td>
+              <td class="py-4 px-6">fsdfdsf</td>
+              <td class="py-4 px-6">fsdfds</td>
+              <td class="py-4 px-6">ghgfhf</td>
+              <td class="py-4 px-6">hfghfg</td>
 
               <td class="py-4 px-6 text-right">
                 <a
@@ -66,6 +63,38 @@ const MyGallery = (artwork) => {
       </div>
     </>
   );
+}
+
+export const getServerSideProps = async (context) => {
+  console.log(
+    "🚀 ~ file: MyGallery.js ~ line 70 ~ getServerSideProps ~ context",
+    context
+  );
+  try {
+    const res = await fetch("http://localhost:3002/getartwork", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    const data = await res.json();
+    console.log(
+      "🚀 ~ file: MyGallery.js ~ line 13 ~ GetServerSideProps ~ data",
+      data
+    );
+
+    return {
+      props: { artworks: data },
+    };
+  } catch (error) {
+    console.log(
+      "🚀 ~ file: MyGallery.js ~ line 9 ~ GetServerSideProps ~ error",
+      error
+    );
+  }
 };
 
 export default MyGallery;

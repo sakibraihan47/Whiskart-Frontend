@@ -1,5 +1,6 @@
 import { createContext, useReducer, useEffect } from "react";
 import authReducers from "./Reducers";
+import Cookies from "js-cookie";
 
 // const getData = async (url, token) => {
 //   const res = await fetch(url, {
@@ -17,11 +18,12 @@ export const AuthContext = createContext();
 console.log(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducers, {
-    user: null,
+    user: Cookies.get("user") ? JSON.parse(Cookies.get("user")) : null,
+    token: Cookies.get("token") || null,
   });
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(Cookies.get("user"));
     if (user) {
       dispatch({ type: "LOGIN", payload: user });
     }
@@ -36,11 +38,11 @@ export const AuthContextProvider = ({ children }) => {
 };
 
 //   useEffect(() => {
-//     const firstLogin = localStorage.getItem("firstLogin");
+//     const firstLogin = Cookies.get("firstLogin");
 //     const url = "http://localhost:3002/hiddencontent/";
 //     if (firstLogin) {
 //       getData(url).then((res) => {
-//         if (res.err) return localStorage.removeItem("firstLogin");
+//         if (res.err) return Cookies.remove("firstLogin");
 //         dispatch({
 //           type: "AUTH",
 //           payload: {
