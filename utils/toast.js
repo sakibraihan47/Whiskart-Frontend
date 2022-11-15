@@ -36,3 +36,15 @@ export const notifyDelete = () =>
     progress: undefined,
     theme: "dark",
   });
+
+export const notifySignup = () =>
+  toast.success("Account Created! Redirecting to Sign In", {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
+  });

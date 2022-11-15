@@ -220,7 +220,7 @@ const ArtworkPost = () => {
                 Upload an Image of Artwork
               </label>
               <input
-                className="block w-full text-sm  bg-gray-50 rounded-sm  border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-blue-400"
+                className="block w-full text-sm  bg-gray-50 rounded  border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-blue-400"
                 id="file_input"
                 type="file"
                 onChange={(event) => {

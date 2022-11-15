@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useLogin } from "../../hooks/useLogin";
+import Link from "next/link";
 export const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -66,7 +67,7 @@ export const Login = () => {
               Email
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border-2 focus:border-purple-300 rounded py-2 px-2 leading-tight focus:outline-none focus:bg-white"
               value={email}
               name="email"
               id="email"
@@ -85,7 +86,7 @@ export const Login = () => {
               Password
             </label>
             <input
-              className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="appearance-none block w-full bg-gray-200 text-gray-700 border-2 focus:border-purple-300 rounded py-2 px-2 leading-tight focus:outline-none focus:bg-white"
               value={pass}
               name="pass"
               id="pass"
@@ -104,7 +105,9 @@ export const Login = () => {
             </button>
           </div>
           <div className="flex items-center justify-center mt-5 text-purple-400 hover:underline cursor-pointer font-bold">
-            <a>Create an account</a>
+            <Link href="/signup">
+              <a>Create an account</a>
+            </Link>
           </div>
         </form>
       </div>

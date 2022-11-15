@@ -42,10 +42,10 @@ export const AuthContextProvider = ({ children }) => {
       payload: { user: credentials.User, token: credentials.accessToken },
     });
   };
-  const logout = (credentials) => {
+  const logout = () => {
     dispatch({
       type: "LOGOUT",
-      payload: { user: credentials.User.null, token: credentials.token.null },
+      payload: { user: null, token: null },
     });
   };
 

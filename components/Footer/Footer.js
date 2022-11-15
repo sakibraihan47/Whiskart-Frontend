@@ -2,39 +2,41 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer class="h-4 fixed p-2 bg-white w-full  shadow md:px-6 md:py-8 dark:bg-gray-900 bottom-0">
-      <div class="sm:flex sm:items-center sm:justify-between">
-        <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0">
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+    <footer class=" fixed py-2 bg-white w-full shadow dark:bg-gray-900 bottom-0">
+      <div class="sm:flex px-8 sm:items-center sm:justify-between space-between">
+        <a href="https://flowbite.com/" class="flex items-center mb-0 sm:mb-0">
+          <span class=" font-raleway  self-center text-xl font-semibold dark:text-white">
             WHiSKART
           </span>
           <h1 className=" px-2 text-pink-600 font-bold ">
             imagine. create. share.
           </h1>
         </a>
-        <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6">
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href="#" class="mr-4 hover:underline md:mr-6 ">
-              Gallery
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline">
-              Contact
-            </a>
-          </li>
-        </ul>
-        <div className="flex items-center space-x-6 sm:justify-center md:mt-0">
+        <div>
+          <ul class="mr-12 flex items-center sm:justify-center text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6 ">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6 ">
+                Gallery
+              </a>
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="flex items-center space-x-6">
           <a
             href="#"
             className="text-gray-400 hover:text-gray-900 dark:hover:text-pink-400"
@@ -123,15 +125,23 @@ const Footer = () => {
           </a>
         </div>
       </div>
-
-      <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-      <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+      <span class="block text-xs text-gray-500 sm:text-right dark:text-gray-400 px-6">
         © 2022{" "}
-        <a href="https://flowbite.com/" class="hover:underline">
+        <a href="https://flowbite.com/" class="hover:underline font-raleway ">
           Whiskart™
         </a>
         . All Rights Reserved.
       </span>
+      {/* <div>
+        <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          © 2022{" "}
+          <a href="https://flowbite.com/" class="hover:underline">
+            Whiskart™
+          </a>
+          . All Rights Reserved.
+        </span>
+      </div> */}
     </footer>
   );
 };

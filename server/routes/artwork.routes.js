@@ -11,7 +11,7 @@ const auth = require("../middleware/auth");
 router.post("/postartwork", auth, postArtwork);
 
 //get artworks
-router.get("/getartwork", auth, getArtwork);
+router.get("/getartwork/:userId", auth, getArtwork);
 module.exports = router;
 
 //del specific artwork

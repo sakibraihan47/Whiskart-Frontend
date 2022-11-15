@@ -5,7 +5,7 @@ import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export const NavbarArtist = () => {
+export const NavbarDynamic = () => {
   const activeLink = "text-blue-400 ";
   const normalLink = "text-white";
 
@@ -93,10 +93,10 @@ export const NavbarArtist = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/gallery">
+                  <Link href="/mygallery">
                     <a
                       className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
-                        currentRoute == "/gallery" ? activeLink : normalLink
+                        currentRoute == "/mygallery" ? activeLink : normalLink
                       }`}
                     >
                       My Gallery
@@ -134,7 +134,7 @@ export const NavbarArtist = () => {
         <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="#" className="flex items-center">
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="font-raleway  self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 WHiSKART
               </span>
             </a>
@@ -228,10 +228,11 @@ export const NavbarArtist = () => {
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="#" className="flex items-center">
               <img />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="font-raleway  self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                 WHiSKART
               </span>
             </a>
+
             <div className="flex md:order-2">
               <a
                 href="/login"

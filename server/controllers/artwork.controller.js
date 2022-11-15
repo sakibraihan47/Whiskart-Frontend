@@ -35,7 +35,7 @@ exports.postArtwork = async (req, res) => {
 
 //get all artworks
 exports.getArtwork = async (req, res) => {
-  let artworks = await artworkModel.find();
+  let artworks = await artworkModel.find({ artist: req.params.userId });
   console.log("artworks", artworks);
   res.status(200).json({ artworks });
 };
