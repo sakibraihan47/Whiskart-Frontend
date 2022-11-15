@@ -24,3 +24,15 @@ export const notifyFail = () =>
     progress: undefined,
     theme: "dark",
   });
+
+export const notifyDelete = () =>
+  toast.info("Artwork Deleted!", {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });

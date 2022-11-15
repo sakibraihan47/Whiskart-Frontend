@@ -6,6 +6,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const NavbarArtist = () => {
+  const activeLink = "text-blue-400 ";
+  const normalLink = "text-white";
+
+  const router = useRouter();
+  const currentRoute = router.pathname;
   const { logout } = useLogout();
 
   const { user } = useContext(AuthContext);
@@ -17,12 +22,14 @@ export const NavbarArtist = () => {
   return (
     <>
       {user && user?.role == "artist" && (
-        <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
+        <nav className="bg-white px-2 sm:px-4 py-1 dark:bg-gray-900 fixed w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="#" className="flex items-center">
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                WHiSKART
-              </span>
+            <a className="flex items-center">
+              <Link href="/">
+                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                  WHiSKART
+                </span>
+              </Link>
             </a>
 
             <div className="flex md:order-2">
@@ -70,39 +77,53 @@ export const NavbarArtist = () => {
               id="navbar-sticky"
             >
               <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <a
-                    href="/homepage"
-                    className="block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:text-blue-400 md:p-0 dark:text-white"
-                    aria-current="page"
-                  >
-                    Home
-                  </a>
+                <li
+                  className={
+                    currentRoute == "/homepage" ? activeLink : normalLink
+                  }
+                >
+                  <Link href="/homepage">
+                    <a
+                      className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
+                        currentRoute == "/homepage" ? activeLink : normalLink
+                      }`}
+                    >
+                      Home
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  {/*Add a Condition Here*/}
-                  <a
-                    href="/post"
-                    className="block py-2 pr-4 pl-3 text-gray-700 rounded text-xl hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    My Gallery
-                  </a>
+                  <Link href="/gallery">
+                    <a
+                      className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
+                        currentRoute == "/gallery" ? activeLink : normalLink
+                      }`}
+                    >
+                      My Gallery
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 pr-4 pl-3 text-gray-700 rounded text-xl hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Artists
-                  </a>
+                  <Link href="#">
+                    <a
+                      className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
+                        currentRoute == "/artists" ? activeLink : normalLink
+                      }`}
+                    >
+                      Artists
+                    </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="block py-2 pr-4 pl-3 text-gray-700 rounded text-xl hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Post+
-                  </a>
+                  <Link href="/post">
+                    <a
+                      className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
+                        currentRoute == "/post" ? activeLink : normalLink
+                      }`}
+                    >
+                      Post+
+                    </a>
+                  </Link>
                 </li>
               </ul>
             </div>

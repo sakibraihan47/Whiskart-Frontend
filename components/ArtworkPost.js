@@ -33,7 +33,7 @@ const ArtworkPost = () => {
         handleSubmit(url);
         return url;
       });
-    }, 5000);
+    }, 3000);
   };
 
   const handleChange = (event) => {

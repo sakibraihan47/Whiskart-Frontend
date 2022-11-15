@@ -103,7 +103,7 @@ export const Login = () => {
               Sign In
             </button>
           </div>
-          <div className="flex items-center justify-center mt-5 text-green-400 hover:underline cursor-pointer font-bold">
+          <div className="flex items-center justify-center mt-5 text-purple-400 hover:underline cursor-pointer font-bold">
             <a>Create an account</a>
           </div>
         </form>

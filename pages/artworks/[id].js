@@ -6,8 +6,8 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { notifyFail } from "../../utils/toast";
-import { notifySuccess } from "../../utils/toast";
+import { notifyDelete, notifyFail, notifySuccess } from "../../utils/toast";
+
 import { useRouter } from "next/router";
 
 const EditArtwork = ({ artwork }) => {
@@ -143,6 +143,7 @@ const EditArtwork = ({ artwork }) => {
       });
 
       let response = await res.json();
+      notifyDelete();
       router.back();
       console.log("response", response);
     } catch (error) {
@@ -167,8 +168,8 @@ const EditArtwork = ({ artwork }) => {
                   src={src}
                   loader={() => src}
                   alt="this image"
-                  width={150}
-                  height={150}
+                  width={160}
+                  height={120}
                 />
               </div>
             </div>
