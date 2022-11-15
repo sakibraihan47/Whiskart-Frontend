@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+
   async rewrites() {
     return [
       {
@@ -10,6 +11,18 @@ const nextConfig = {
       },
     ];
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        port: "",
+        pathname: "gs://whiskart-5195e.appspot.com/images/",
+      },
+    ],
+  },
+  // domains: ["firebasestorage.googleapis.com"],
 };
 
 module.exports = nextConfig;

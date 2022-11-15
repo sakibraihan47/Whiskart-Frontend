@@ -27,11 +27,13 @@ const ArtworkPost = () => {
       alert("Image has been Uploaded");
     });
 
-    getDownloadURL(imageRef).then((url) => {
-      // return resolve(url);
-      handleSubmit(url);
-      return url;
-    });
+    setTimeout(() => {
+      getDownloadURL(imageRef).then((url) => {
+        // return resolve(url);
+        handleSubmit(url);
+        return url;
+      });
+    }, 5000);
   };
 
   const handleChange = (event) => {

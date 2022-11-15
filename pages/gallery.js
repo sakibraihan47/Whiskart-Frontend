@@ -1,5 +1,6 @@
 import MyGallery from "../components/MyGallery";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const Gallery = ({ artworks }) => {
   console.log("🚀 ~ file: gallery.js ~ line 5 ~ Gallery ~ artworks", artworks);
@@ -54,12 +55,12 @@ const Gallery = ({ artworks }) => {
                   <td class="py-4 px-6">{artwork.createdAt}</td>
 
                   <td class="py-4 px-6 text-right">
-                    <a
-                      href="#"
+                    <Link
+                      href={"artworks/" + artwork._id}
                       class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                     >
                       Edit
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               </tbody>
