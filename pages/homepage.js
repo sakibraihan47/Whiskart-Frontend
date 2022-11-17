@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+
 const homepage = () => {
   return (
     <>
@@ -153,6 +156,38 @@ const homepage = () => {
       </section>
     </>
   );
+};
+
+export const getServerSideProps = async (context) => {
+  const token = context.req.cookies.token;
+
+  const user = JSON.parse(context.req.cookies.user).id;
+  console.log(
+    "🚀 ~ file: gallery.js ~ line 78 ~ getServerSideProps ~ user",
+    user
+  );
+  if (!token) {
+    return { redirect: { permanent: true, destination: "/" }, props: {} };
+  }
+  const res = await fetch("http://localhost:3002/getartwork/" + user, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  const data = await res.json();
+  console.log(
+    "🚀 ~ file: MyGallery.js ~ line 13 ~ GetServerSideProps ~ data",
+    data
+  );
+
+  return {
+    props: { artworks: data.artworks },
+  };
 };
 
 export default homepage;

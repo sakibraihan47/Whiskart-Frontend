@@ -133,7 +133,7 @@ export const NavbarDynamic = () => {
       {user && user?.role == "buyer" && (
         <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="#" className="flex items-center">
+            <a href="/" className="flex items-center">
               <span className="font-raleway  self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 WHiSKART
               </span>
@@ -226,7 +226,7 @@ export const NavbarDynamic = () => {
       {!user && (
         <nav className="px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0  dark:border-gray-600">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="#" className="flex items-center">
+            <a href="/" className="flex items-center">
               <img />
               <span className="font-raleway  self-center text-xl font-semibold whitespace-nowrap dark:text-white">
                 WHiSKART
@@ -240,6 +240,28 @@ export const NavbarDynamic = () => {
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Sign In
+              </a>
+            </div>
+          </div>
+        </nav>
+      )}
+      {currentRoute == "/login" && (
+        <nav className="px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full z-20 top-0 left-0  dark:border-gray-600">
+          <div className="container flex flex-wrap justify-between items-center mx-auto">
+            <a href="/" className="flex items-center">
+              <img />
+              <span className="font-raleway  self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                WHiSKART
+              </span>
+            </a>
+
+            <div className="flex md:order-2">
+              <a
+                href="/signup"
+                type="button"
+                className="text-black font-bold bg-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-pink-700  dark:hover: dark:focus:ring-green-400"
+              >
+                Create a new Account Instead
               </a>
             </div>
           </div>

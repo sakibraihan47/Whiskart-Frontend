@@ -3,11 +3,12 @@ import Image from "next/image";
 
 import Link from "next/link";
 import Avatar from "../components/Avatar";
+import AvatarClone from "../components/AvatarClone";
 
 export default function Home() {
   return (
     <>
-      <main className="bg-hero h-screen flex items-center px-6 lg:px-32 text-white bg-gradient-to-r from-gray-800 to-purple-900">
+      <main className="h-screen flex items-center px-6 lg:px-32 text-white bg-gradient-to-r from-gray-800 to-black">
         <section className="w-screen md:w-9/12 xl:w-8/12">
           <span className="font-raleway font-bold uppercase tracking-widest">
             W
@@ -38,7 +39,8 @@ export default function Home() {
             Join Whiskart
           </a>
         </section>
-        <Avatar className="" />
+        <Avatar />
+        <AvatarClone />
       </main>
     </>
   );

@@ -7,6 +7,10 @@ const { deleteArtwork } = require("../controllers/artwork.controller");
 const { updateArtwork } = require("../controllers/artwork.controller");
 const auth = require("../middleware/auth");
 
+//display artworks homepage
+router.get("/getartwork/", auth, getArtwork);
+module.exports = router;
+
 //post artworks
 router.post("/postartwork", auth, postArtwork);
 

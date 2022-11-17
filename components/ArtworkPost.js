@@ -2,6 +2,8 @@ import { useState } from "react";
 import storage from "../firebase";
 import Cookies from "js-cookie";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { ToastContainer } from "react-toastify";
+import { notifyFail, notifySuccess } from "../utils/toast";
 
 const ArtworkPost = () => {
   const [imageUpload, setImageUpload] = useState();
@@ -23,8 +25,6 @@ const ArtworkPost = () => {
         "🚀 ~ file: ArtworkPost.js ~ line 22 ~ uploadBytes ~ byte",
         byte
       );
-
-      alert("Image has been Uploaded");
     });
 
     setTimeout(() => {
@@ -73,13 +73,16 @@ const ArtworkPost = () => {
       let response = await res.json();
       console.log("token", Cookies.get("token"));
       console.log("response", response);
+      notifySuccess();
     } catch (error) {
       console.log(error);
+      notifyFail();
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className="p-6 bg-blue-100 rounded  ">
         <form onSubmit={uploadImage}>
           <div className="relative z-0 mb-6 w-full group">

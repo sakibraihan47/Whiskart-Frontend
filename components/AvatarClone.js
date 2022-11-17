@@ -1,9 +1,9 @@
 import Image from "next/image";
 
-function Avatar() {
+function AvatarClone() {
   return (
     <Image
-      src="/whiskart_alter.jpeg"
+      src="/whiskart.jpeg"
       alt="me"
       height={500}
       width={300}
@@ -12,4 +12,4 @@ function Avatar() {
   );
 }
 
-export default Avatar;
+export default AvatarClone;
