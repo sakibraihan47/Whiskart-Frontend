@@ -48,3 +48,15 @@ export const notifySignup = () =>
     progress: undefined,
     theme: "dark",
   });
+
+export const notifyCart = () =>
+  toast.info("Added to your Cart!", {
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
