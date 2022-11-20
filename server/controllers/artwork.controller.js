@@ -33,6 +33,21 @@ exports.postArtwork = async (req, res) => {
   });
 };
 
+exports.getHomeArtwork = async (req, res) => {
+  let artworks = await artworkModel.find();
+
+  console.log("artworks", artworks);
+  res.status(200).json({ artworks });
+};
+
+exports.getAllArtwork = async (req, res) => {
+  let artworks = await artworkModel
+    .find()
+    .populate("artist", "_id firstName lastName");
+  console.log("artworks", artworks);
+  res.status(200).json({ artworks });
+};
+
 //get all artworks
 exports.getArtwork = async (req, res) => {
   let artworks = await artworkModel.find({ artist: req.params.userId });
@@ -41,7 +56,9 @@ exports.getArtwork = async (req, res) => {
 };
 //get one artwork
 exports.getThisArtwork = async (req, res) => {
-  let artworks = await artworkModel.findOne({ _id: req.params.artId });
+  let artworks = await artworkModel
+    .findOne({ _id: req.params.artId })
+    .populate("artist", "_id firstName lastName");
   console.log("Current artwork", artworks);
   res.status(200).json({ artworks });
 };

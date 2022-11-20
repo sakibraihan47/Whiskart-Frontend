@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useLogin } from "../../hooks/useLogin";
 import Link from "next/link";
+import { ToastContainer } from "react-toastify";
+import { notifyCart } from "../../utils/toast";
 export const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -20,6 +22,7 @@ export const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await login(email, pass);
+
     router.push("/homepage");
 
     // const payload = { email, pass };
@@ -50,6 +53,7 @@ export const Login = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="w-full max-w-xs">
         <form
           onSubmit={handleSubmit}

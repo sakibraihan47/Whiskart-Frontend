@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { notifySignup } from "../../utils/toast";
 import { ToastContainer } from "react-toastify";
 import Link from "next/link";
+import Login from "./Login";
+import { useLogin } from "../../hooks/useLogin";
 
 export const Signup = () => {
   // const [user, setUser] = useState({
@@ -16,7 +18,7 @@ export const Signup = () => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [role, setRole] = useState("");
-
+  const { login, error, isLoading } = useLogin();
   const handleChange = (event) => {
     if (event.target.name == "firstName") {
       setFirstName(event.target.value);
@@ -48,9 +50,9 @@ export const Signup = () => {
       let response = await res.json();
       console.log("response", response);
       notifySignup();
-      setTimeout(() => {
-        router.push("/login");
-      }, 2000);
+      setTimeout(() => {}, 2000);
+      await login(email, pass);
+      router.push("/homepage");
     } catch (error) {
       console.log(error);
     }
