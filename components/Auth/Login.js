@@ -4,12 +4,13 @@ import { useRouter } from "next/router";
 import { useLogin } from "../../hooks/useLogin";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
-import { notifyCart } from "../../utils/toast";
+import { notifyLoginError } from "../../utils/toast";
 export const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const { login, error, isLoading } = useLogin();
+  const [LoginError, setLoginError] = useState("");
 
   const handleChange = (event) => {
     if (event.target.name == "email") {
@@ -20,10 +21,19 @@ export const Login = () => {
   };
 
   const handleSubmit = async (event) => {
+    console.log("error", error);
     event.preventDefault();
-    await login(email, pass);
+    try {
+      let data = await login(email, pass);
+      console.log("🚀 ~ file: Login.js ~ line 28 ~ handleSubmit ~ data", data);
 
-    router.push("/homepage");
+      if (data?.error) {
+        return notifyLoginError();
+      }
+      router.push("/homepage");
+    } catch (error) {
+      console.log("error", error);
+    }
 
     // const payload = { email, pass };
 

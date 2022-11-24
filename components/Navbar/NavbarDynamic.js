@@ -226,7 +226,7 @@ export const NavbarDynamic = () => {
                   <Link href="/cart">
                     <a
                       className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
-                        currentRoute == "/post" ? activeLinkB : normalLink
+                        currentRoute == "/cart" ? activeLinkB : normalLink
                       }`}
                     >
                       My Cart

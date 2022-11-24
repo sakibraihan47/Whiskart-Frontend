@@ -28,10 +28,12 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const user = Cookies.get("user");
     const token = Cookies.get("token");
-    console.log("🚀 ~ file: GlobalState.js ~ line 31 ~ useEffect ~ user", user);
-    console.log("rehydrate");
+
     if (user && token) {
-      dispatch({ type: "LOGIN", payload: { user: JSON.parse(user), token } });
+      dispatch({
+        type: "LOGIN",
+        payload: { user: JSON.parse(user), token },
+      });
     }
   }, []);
 
@@ -39,7 +41,10 @@ export const AuthContextProvider = ({ children }) => {
   const login = (credentials) => {
     dispatch({
       type: "LOGIN",
-      payload: { user: credentials.User, token: credentials.accessToken },
+      payload: {
+        user: credentials.User,
+        token: credentials.accessToken,
+      },
     });
   };
   const logout = () => {
