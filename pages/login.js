@@ -11,3 +11,31 @@ export default function login() {
     </>
   );
 }
+export const getServerSideProps = async (context) => {
+  let user = context?.req?.cookies?.user;
+  console.log(
+    "🚀 ~ file: login.js ~ line 16 ~ getServerSideProps ~ user",
+    user
+  );
+  if (user != undefined) {
+    user = JSON.parse(user);
+  }
+
+  if (user) {
+    if (user.role == "artist") {
+      return {
+        redirect: { permanent: true, destination: "/homepage" },
+        props: {},
+      };
+    } else if (user.role == "buyer") {
+      return {
+        redirect: { permanent: true, destination: "/homepage" },
+        props: {},
+      };
+    }
+  }
+
+  return {
+    props: {},
+  };
+};

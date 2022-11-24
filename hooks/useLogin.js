@@ -1,15 +1,16 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/GlobalState";
 import Cookies from "js-cookie";
+import { notifyLoginError } from "../utils/toast";
 
 export const useLogin = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(null);
   const { login: contextLogin } = useContext(AuthContext);
 
   const login = async (email, pass) => {
     setIsLoading(true);
-    setError(null);
+    setError(false);
 
     const response = await fetch("http://localhost:3002/signin", {
       method: "POST",
@@ -19,8 +20,9 @@ export const useLogin = () => {
     const json = await response.json();
 
     if (!response.ok) {
-      setIsLoading(false);
-      setError(json.error);
+      return {
+        error: json?.error || "Something went wrong!",
+      };
     }
     if (response.ok) {
       // save the user to local storage
