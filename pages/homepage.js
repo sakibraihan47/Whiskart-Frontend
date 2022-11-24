@@ -12,7 +12,7 @@ const homepage = ({ artworks }) => {
       {artworks && (
         <section className="py-6 text-gray-400 bg-gray-900 body-font h-screen">
           <div className="container px-5 py-24 mx-auto">
-            <div className="flex flex-wrap -m-4">
+            <div className="flex flex-wrap m-4">
               {artworks.map((artwork) => (
                 <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
                   <a className="block relative h-48 rounded overflow-hidden">
