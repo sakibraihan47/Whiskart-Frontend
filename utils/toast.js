@@ -13,6 +13,18 @@ export const notifySuccess = () =>
     theme: "dark",
   });
 
+export const notifyPosted = () =>
+  toast.success("New Artwork Posted!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
+  });
+
 export const notifyFail = () =>
   toast.error("Update Failed!", {
     position: "top-right",

@@ -3,7 +3,7 @@ import storage from "../firebase";
 import Cookies from "js-cookie";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { ToastContainer } from "react-toastify";
-import { notifyFail, notifySuccess } from "../utils/toast";
+import { notifyFail, notifyPosted } from "../utils/toast";
 
 const ArtworkPost = () => {
   const [imageUpload, setImageUpload] = useState();
@@ -73,7 +73,7 @@ const ArtworkPost = () => {
       let response = await res.json();
       console.log("token", Cookies.get("token"));
       console.log("response", response);
-      notifySuccess();
+      notifyPosted();
     } catch (error) {
       console.log(error);
       notifyFail();
