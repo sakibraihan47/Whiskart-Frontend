@@ -8,7 +8,7 @@ const artworkSchema = new mongoose.Schema(
     des: { type: String, required: true },
     canvas: { type: String, required: true },
     color: { type: String, required: true },
-    price: { type: String, required: true },
+    price: { type: Number, required: true },
     genre: { type: String, required: true },
     img: { type: String, required: true },
   },

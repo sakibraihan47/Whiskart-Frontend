@@ -23,7 +23,7 @@ export const NavbarDynamic = () => {
   return (
     <>
       {user && user?.role == "artist" && (
-        <nav className="bg-white px-2 sm:px-4 py-1 dark:bg-gray-900 fixed w-full top-0 left-0">
+        <nav className="fixed z-20 bg-white px-2 sm:px-4 py-1 dark:bg-gray-900  w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a className="flex items-center">
               <Link href="/">
@@ -132,7 +132,7 @@ export const NavbarDynamic = () => {
         </nav>
       )}
       {user && user?.role == "buyer" && (
-        <nav className="bg-white px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
+        <nav className="bg-white z-20 px-2 sm:px-4 py-2.5 dark:bg-gray-900 fixed w-full top-0 left-0">
           <div className="container flex flex-wrap justify-between items-center mx-auto">
             <a href="/" className="flex items-center">
               <span className="font-raleway  self-center text-2xl font-semibold whitespace-nowrap dark:text-white">

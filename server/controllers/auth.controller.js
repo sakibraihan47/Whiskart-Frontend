@@ -66,7 +66,7 @@ exports.signin = async (req, res) => {
         { user_id: user._id, email: user.email, role: user.role },
         process.env.API_SECRET,
         {
-          expiresIn: "2h",
+          expiresIn: 2000,
         }
       );
 

@@ -18,6 +18,7 @@ exports.postArtwork = async (req, res) => {
     price: req.body.price,
     img: req.body.img,
   });
+
   artwork.save((err, artwork) => {
     if (err) {
       res.status(500).send({

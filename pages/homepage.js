@@ -2,41 +2,39 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const homepage = ({ artworks }) => {
-  console.log(
-    "🚀 ~ file: homepage.js ~ line 5 ~ homepage ~ artworks",
-    artworks
-  );
-
+  console.log("🚀 ~ file: homepage.js:5 ~ homepage ~ artworks", artworks);
   return (
     <>
       {artworks && (
-        <section className="py-6 text-gray-400 bg-gray-900 body-font h-screen">
+        <section className="py-6 text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-24 mx-auto">
-            <div className="flex flex-wrap m-4">
-              {artworks.map((artwork) => (
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-                  <a className="block relative h-48 rounded overflow-hidden">
-                    <img
-                      alt="ecommerce"
-                      className="object-cover object-center w-full h-full block"
-                      src={artwork.img}
-                    />
-                  </a>
-                  <div className="mt-4">
-                    <h3 className="text-pink-500 text-bold text-xs tracking-widest title-font mb-1">
-                      {artwork.artist.firstName} {artwork.artist.lastName}
-                    </h3>
-                    <Link href={"home/" + artwork._id}>
-                      <a>
-                        <h2 className="text-white title-font text-lg font-medium">
-                          {artwork.name}
-                        </h2>
-                      </a>
-                    </Link>
-                    <p className="mt-1">BDT {artwork.price}.00</p>
+            <div className=" overflow-y-auto overflow-x-hidden min-h-96">
+              <div className="flex flex-wrap m-4">
+                {artworks.map((artwork) => (
+                  <div className="lg:w-1/4 md:w-1/2 p-4 w-full ">
+                    <a className="block relative h-48 rounded overflow-hidden">
+                      <img
+                        alt="ecommerce"
+                        className="object-cover object-center w-full h-full block"
+                        src={artwork.img}
+                      />
+                    </a>
+                    <div className="mt-4">
+                      <h3 className="text-pink-500 text-bold text-xs tracking-widest title-font mb-1">
+                        {artwork.artist.firstName} {artwork.artist.lastName}
+                      </h3>
+                      <Link href={"home/" + artwork._id}>
+                        <a>
+                          <h2 className="text-white title-font text-lg font-medium">
+                            {artwork.name}
+                          </h2>
+                        </a>
+                      </Link>
+                      <p className="">BDT {artwork.price}.00</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
