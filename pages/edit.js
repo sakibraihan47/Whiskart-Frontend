@@ -2,8 +2,6 @@ import MyGallery from "../components/MyGallery";
 import Cookies from "js-cookie";
 
 const Edit = ({ artwork }) => {
-  console.log("🚀 ~ file: gallery.js ~ line 5 ~ Gallery ~ artworks", artwork);
-
   return (
     <>
       {/* {artworks.map((artwork) => ( */}
@@ -72,10 +70,6 @@ const Edit = ({ artwork }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  console.log(
-    "🚀 ~ file: edit.js ~ line 75 ~ getServerSideProps ~ context",
-    context.params
-  );
   const token = context.req.cookies.token;
   if (!token) {
     return { redirect: { permanent: true, destination: "/" }, props: {} };
@@ -91,7 +85,6 @@ export const getServerSideProps = async (context) => {
     },
   });
   res = await res.json();
-  console.log("🚀 ~ file: edit.js ~ line 90 ~ getServerSideProps ~ res", res);
 
   // return {
   //   props: { artwork: res },

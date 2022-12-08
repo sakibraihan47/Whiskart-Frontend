@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 const Gallery = ({ artworks }) => {
   const router = useRouter();
-  console.log("🚀 ~ file: gallery.js ~ line 5 ~ Gallery ~ artworks", artworks);
 
   return (
     <>
@@ -127,10 +126,7 @@ export const getServerSideProps = async (context) => {
   const token = context.req.cookies.token;
 
   const user = JSON.parse(context.req.cookies.user).id;
-  console.log(
-    "🚀 ~ file: gallery.js ~ line 78 ~ getServerSideProps ~ user",
-    user
-  );
+
   if (!token) {
     return { redirect: { permanent: true, destination: "/" }, props: {} };
   }
@@ -145,10 +141,6 @@ export const getServerSideProps = async (context) => {
   });
 
   const data = await res.json();
-  console.log(
-    "🚀 ~ file: MyGallery.js ~ line 13 ~ GetServerSideProps ~ data",
-    data
-  );
 
   return {
     props: { artworks: data.artworks },

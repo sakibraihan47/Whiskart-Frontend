@@ -2,14 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 const homepage = ({ artworks }) => {
-  console.log("🚀 ~ file: homepage.js:5 ~ homepage ~ artworks", artworks);
   return (
     <>
       {artworks && (
         <section className="py-6 text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-24 mx-auto">
-            <div className=" overflow-y-auto overflow-x-hidden min-h-96">
-              <div className="flex flex-wrap m-4">
+            <div className="  overflow-x-hidden min-h-96">
+              <div className=" flex flex-wrap m-4">
                 {artworks.map((artwork) => (
                   <div className="lg:w-1/4 md:w-1/2 p-4 w-full ">
                     <a className="block relative h-48 rounded overflow-hidden">
@@ -49,6 +48,10 @@ export const getServerSideProps = async (context) => {
   if (!token) {
     return { redirect: { permanent: true, destination: "/" }, props: {} };
   }
+
+  if (token === null) {
+    return { redirect: { permanent: true, destination: "/" }, props: {} };
+  }
   const res = await fetch("http://localhost:3002/getartworkall", {
     method: "GET",
     headers: {
@@ -60,6 +63,7 @@ export const getServerSideProps = async (context) => {
   });
 
   const data = await res.json();
+  console.log("🚀 ~ file: homepage.js:66 ~ getServerSideProps ~ data", data);
 
   return {
     props: { artworks: data.artworks },

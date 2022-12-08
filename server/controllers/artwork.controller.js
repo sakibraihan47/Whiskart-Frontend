@@ -37,7 +37,6 @@ exports.postArtwork = async (req, res) => {
 exports.getHomeArtwork = async (req, res) => {
   let artworks = await artworkModel.find();
 
-  console.log("artworks", artworks);
   res.status(200).json({ artworks });
 };
 
@@ -45,14 +44,14 @@ exports.getAllArtwork = async (req, res) => {
   let artworks = await artworkModel
     .find()
     .populate("artist", "_id firstName lastName");
-  console.log("artworks", artworks);
+
   res.status(200).json({ artworks });
 };
 
 //get all artworks
 exports.getArtwork = async (req, res) => {
   let artworks = await artworkModel.find({ artist: req.params.userId });
-  console.log("artworks", artworks);
+
   res.status(200).json({ artworks });
 };
 //get one artwork
@@ -60,13 +59,13 @@ exports.getThisArtwork = async (req, res) => {
   let artworks = await artworkModel
     .findOne({ _id: req.params.artId })
     .populate("artist", "_id firstName lastName");
-  console.log("Current artwork", artworks);
+
   res.status(200).json({ artworks });
 };
 //delete artwork
 exports.deleteArtwork = async (req, res) => {
   let removedArtwork = await artworkModel.deleteOne({ _id: req.params.artId });
-  console.log("deleted", removedArtwork);
+
   res.status(200).json({ removedArtwork });
 };
 //update info artwork
@@ -78,6 +77,6 @@ exports.updateArtwork = async (req, res) => {
     },
     { new: true }
   );
-  console.log("updated", updatedArtwork);
+
   res.status(200).json({ updatedArtwork });
 };

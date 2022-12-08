@@ -48,10 +48,7 @@ export default function Home() {
 
 export const getServerSideProps = async (context) => {
   let user = context?.req?.cookies?.user;
-  console.log(
-    "🚀 ~ file: login.js ~ line 16 ~ getServerSideProps ~ user",
-    user
-  );
+
   if (user != undefined) {
     user = JSON.parse(user);
   }

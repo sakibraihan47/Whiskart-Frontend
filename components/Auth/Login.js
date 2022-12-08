@@ -30,6 +30,7 @@ export const Login = () => {
       if (data?.error) {
         return notifyLoginError();
       }
+
       router.push("/homepage");
     } catch (error) {
       console.log("error", error);
