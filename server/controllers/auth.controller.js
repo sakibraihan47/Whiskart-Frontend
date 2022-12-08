@@ -23,7 +23,7 @@ exports.signup = async (req, res) => {
     },
     process.env.API_SECRET,
     {
-      expiresIn: "4h",
+      expiresIn: 120 * 60,
     }
   );
   // save user token
@@ -66,7 +66,7 @@ exports.signin = async (req, res) => {
         { user_id: user._id, email: user.email, role: user.role },
         process.env.API_SECRET,
         {
-          expiresIn: 2000,
+          expiresIn: 120 * 60,
         }
       );
 
@@ -85,13 +85,13 @@ exports.signin = async (req, res) => {
         accessToken: token,
       });
     }
-    // user fail msg
+
+    //user fail msg
     else res.status(400).json({ error: "invalid Credentials" });
   } catch (err) {
     console.log(err);
   }
 };
-
 //token controller
 
 exports.hiddenContent = async (req, res) => {
