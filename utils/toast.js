@@ -84,3 +84,15 @@ export const notifyLoginError = () =>
     progress: undefined,
     theme: "dark",
   });
+
+export const notifyCartExist = () =>
+  toast.error("Item Already In Cart!!!", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
+  });
