@@ -1,0 +1,11 @@
+import Reset from "../components/Auth/Reset";
+
+const reset = () => {
+  return (
+    <div className="flex flex-col h-screen items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0  bg-gradient-to-r from-gray-800 to-purple-900">
+      <Reset />;
+    </div>
+  );
+};
+
+export default reset;

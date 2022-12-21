@@ -96,3 +96,26 @@ export const notifyCartExist = () =>
     progress: undefined,
     theme: "dark",
   });
+export const notifyReset = () =>
+  toast.success("Reset Complete! Redirecting to Login", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
+  });
+
+export const notifyUserError = () =>
+  toast.error("User Not Found! Check Email", {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: false,
+    pauseOnHover: true,
+    draggable: false,
+    progress: undefined,
+    theme: "dark",
+  });

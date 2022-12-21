@@ -124,6 +124,11 @@ export const Login = () => {
               <a>Create an account</a>
             </Link>
           </div>
+          <div className="flex items-center justify-center mt-5 text-sm text-gray-400 hover:underline cursor-pointer">
+            <Link href="/reset">
+              <a>Forgot Password</a>
+            </Link>
+          </div>
         </form>
       </div>
     </>

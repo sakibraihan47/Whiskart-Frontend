@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
       {/* <ArtworkState> */}
-      <NavbarDynamic />
+      <NavbarDynamic {...pageProps} />
       <Component {...pageProps} /> <Footer /> {/* </ArtworkState> */}
     </AuthContextProvider>
   );

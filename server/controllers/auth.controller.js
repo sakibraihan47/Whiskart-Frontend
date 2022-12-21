@@ -111,3 +111,33 @@ exports.hiddenContent = async (req, res) => {
     });
   }
 };
+
+exports.checkuser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await userModel.findOne({ email });
+    if (!email) {
+      res.status(400).send("user not found");
+    }
+    if (user) {
+      res.status(200).json(true);
+    } else res.status(400).json(false);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+exports.reset = async (req, res) => {
+  const { email } = req.body;
+  let newpassword = await userModel.updateOne(
+    { email },
+    {
+      $set: {
+        pass: bcrypt.hashSync(req.body.pass, 8),
+      },
+    },
+    { new: true }
+  );
+
+  res.status(200).json({ newpassword });
+};
