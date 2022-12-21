@@ -17,19 +17,21 @@ import { AuthContext } from "../../context/GlobalState";
 import { useContext } from "react";
 import e from "cors";
 import cart from "../cart";
+import { useRouter } from "next/router";
 
 const artworkInfo = ({ artwork, token, buyer }) => {
+  console.log("🚀 ~ file: [id].js:23 ~ artworkInfo ~ buyer", buyer);
   const { user } = useContext(AuthContext);
-
+  const router = useRouter();
   const [recArt, setRecArt] = useState([]);
   const [chkCart, setCheckCart] = useState([]);
+  const [cartContent, setCartContent] = useState([]);
   console.log("🚀 ~ file: [id].js:24 ~ artworkInfo ~ chkCart", chkCart);
 
   useEffect(() => {
     recommendTo();
-
     checkCart();
-  }, []);
+  }, [cartContent]);
   const recommendTo = async () => {
     try {
       let res = await fetch("http://localhost:3002/recommendation", {
@@ -52,7 +54,9 @@ const artworkInfo = ({ artwork, token, buyer }) => {
     }
   };
 
-  const addCart = async () => {
+  const addCart = async (event) => {
+    event.preventDefault();
+    // router.reload(window.location.pathname);
     if (chkCart === true) {
       notifyCartExist();
     } else if (chkCart === false) {
@@ -68,6 +72,7 @@ const artworkInfo = ({ artwork, token, buyer }) => {
         });
 
         let response = await res.json();
+        setCartContent(response);
         console.log("🚀 ~ file: [id].js:36 ~ addCart ~ response", response);
 
         notifyCart();
@@ -104,23 +109,23 @@ const artworkInfo = ({ artwork, token, buyer }) => {
           <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
             <a href="#">
               <img
-                class="p-8 rounded-t-lg rounded-md"
+                className="p-8 rounded-t-lg rounded-md"
                 src={artwork.img}
                 alt="product image"
               />
             </a>
-            <div class="px-5 pb-5">
+            <div className="px-5 pb-5">
               <a href="#">
                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                   {artwork.name}
                 </h5>
               </a>
-              <div class="flex items-center mt-2.5 mb-5 text-pink-600">
+              <div className="flex items-center mt-2.5 mb-5 text-pink-600">
                 <h1>
                   {artwork.artist.firstName} {artwork.artist.lastName}
                 </h1>
               </div>
-              <div class="flex items-center mt-2.5 mb-5">
+              <div className="flex items-center mt-2.5 mb-5">
                 <h1 className="font-bold text-amber-100">Genre</h1>
                 <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
                   {artwork.genre}
@@ -135,8 +140,8 @@ const artworkInfo = ({ artwork, token, buyer }) => {
                 </span>
               </div>
               <p className="leading-relaxed text-white py-1">{artwork.des}</p>
-              <div class="flex items-center justify-between">
-                <span class="text-3xl font-bold text-gray-900 dark:text-pink-600">
+              <div className="flex items-center justify-between">
+                <span className="text-3xl font-bold text-gray-900 dark:text-pink-600">
                   BDT {artwork.price}
                 </span>
                 {/* <a
@@ -151,8 +156,8 @@ const artworkInfo = ({ artwork, token, buyer }) => {
         </div>
       )}
       {user && user?.role == "buyer" && (
-        <div className="flex h-screen flex-col items-center m-b justify-center px-6 bg-gradient-to-r from-gray-800 to-black">
-          <div className="">
+        <div className="flex h-screen flex-col items-center m-b justify-center px-16 bg-gradient-to-r from-gray-800 to-black">
+          <div className="bg-blue-500">
             {/* <a href="#">
               <img
                 className="p-8 rounded-lg"
@@ -164,7 +169,7 @@ const artworkInfo = ({ artwork, token, buyer }) => {
             <div className="w-full max-w-sm rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
                 <img
-                  class="rounded-t-lg h-64 w-full "
+                  className="rounded-t-lg h-64 w-full "
                   src={artwork.img}
                   alt="product image"
                 />
@@ -229,9 +234,9 @@ const artworkInfo = ({ artwork, token, buyer }) => {
                 alt="product image"
               />
             </a> */}
-            <div className="container w-96">
-              <div className="  min-h-96 w-full bg-slate-900 rounded-xl p-2">
-                <h1 className="font-bold text-l text-rose-400">
+            <div className="container w-full">
+              <div className="  min-h-96  bg-white w-full rounded-xl p-2">
+                <h1 className=" text-l text-rose-400 font-raleway">
                   Recommended for you
                 </h1>
                 <div className=" flex flex-row p-2 max-w-sm overflow-x-auto">

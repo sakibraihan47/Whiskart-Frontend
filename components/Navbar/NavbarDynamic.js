@@ -231,6 +231,7 @@ export const NavbarDynamic = () => {
                     >
                       My Cart
                     </a>
+                    {/* {cart.length} */}
                   </Link>
                 </li>
               </ul>

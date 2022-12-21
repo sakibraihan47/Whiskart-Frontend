@@ -1,9 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Counter from "../components/Counter";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { NavbarDynamic } from "../components/Navbar/NavbarDynamic";
 
 const cart = ({ cart }) => {
+  //   const UserContext = createContext()
+  // const item=({ cart }) =>{
+
+  //   if (cart) {
+  //    return (
+  //     <UserContext.Provider value={cart.length}>
+  //       <NavbarDynamic/>
+
+  //       </UserContext.Provider>
+  //    );
+  //   } else {
+  //    return (
+  //     <></>
+  //    );
+  //   }}
+
   let arr = [];
   arr = cart.map((cart) => cart.artwork.price);
   let sum = 0;

@@ -43,7 +43,8 @@ exports.getHomeArtwork = async (req, res) => {
 exports.getAllArtwork = async (req, res) => {
   let artworks = await artworkModel
     .find()
-    .populate("artist", "_id firstName lastName");
+    .populate("artist", "_id firstName lastName")
+    .sort({ _id: -1 });
 
   res.status(200).json({ artworks });
 };
