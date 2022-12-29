@@ -27,6 +27,7 @@ const cart = ({ cart }) => {
   const { updateCartCount } = useContext(AuthContext);
 
 
+
   
 
   let arr = [];
@@ -128,7 +129,7 @@ const cart = ({ cart }) => {
                         value={cart.artwork._id}
                         onClick={() => {
                           set(cart._id);
-  updateCartCount(-1)
+  // updateCartCount(-1)
 
                         }}
                       >

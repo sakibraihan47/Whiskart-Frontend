@@ -17,6 +17,7 @@ exports.postArtwork = async (req, res) => {
     qty: req.body.qty,
     price: req.body.price,
     img: req.body.img,
+    like: 0,
   });
 
   artwork.save((err, artwork) => {
@@ -34,6 +35,26 @@ exports.postArtwork = async (req, res) => {
   });
 };
 
+exports.postLike = async(req,res)=>{
+
+
+  
+    let postLike = await artworkModel.updateOne(
+      { _id: req.params.artId },
+      {
+        $set: {
+          like: req.body.like,
+        },
+      },
+      { new: true }
+    );
+  
+    res.status(200).json({ postLike });
+
+  
+  
+}
+
 exports.getHomeArtwork = async (req, res) => {
   let artworks = await artworkModel.find();
 
@@ -47,8 +68,7 @@ exports.getAllArtwork = async (req, res) => {
     .sort({ _id: -1 });
 
   res.status(200).json({ artworks });
-};
-
+}; 
 //get all artworks
 exports.getArtwork = async (req, res) => {
   let artworks = await artworkModel.find({ artist: req.params.userId });
@@ -74,7 +94,7 @@ exports.updateArtwork = async (req, res) => {
   let updatedArtwork = await artworkModel.updateOne(
     { _id: req.params.artId },
     {
-      $set: req.body,
+      $set: req.body,  
     },
     { new: true }
   );

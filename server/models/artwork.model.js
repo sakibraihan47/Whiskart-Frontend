@@ -5,6 +5,7 @@ const artworkSchema = new mongoose.Schema(
     name: { type: String, required: true },
     artist: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     qty: { type: Number, required: true },
+    like: {type: Number, required:0},
     des: { type: String, required: true },
     canvas: { type: String, required: true },
     color: { type: String, required: true },

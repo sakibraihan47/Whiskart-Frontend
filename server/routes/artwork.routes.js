@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { postArtwork } = require("../controllers/artwork.controller");
+const { postArtwork, postLike } = require("../controllers/artwork.controller");
 const { getArtwork } = require("../controllers/artwork.controller");
 const { getThisArtwork } = require("../controllers/artwork.controller");
 const { deleteArtwork } = require("../controllers/artwork.controller");
@@ -30,6 +30,9 @@ module.exports = router;
 
 //get specific artwork
 router.get("/getthisartwork/:artId", auth, getThisArtwork);
+module.exports = router;
+
+router.put("/like/:artId", auth, postLike)
 module.exports = router;
 
 // router.get("/getartworkhome", auth, getHomeArtwork);
