@@ -79,7 +79,7 @@ exports.signin = async (req, res) => {
           id: user._id,
           email: user.email,
           role: user.role,
-          firstName: user.firstName,
+          firstName: user.firstName, 
         },
         message: "Login Success!",
         accessToken: token,
