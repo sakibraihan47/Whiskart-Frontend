@@ -24,8 +24,8 @@ const cart = ({ cart }) => {
 
   
 
-  // const { updateCartCount } = useContext(AuthContext);
-  const { updateCartCount } = cart.length
+  const { updateCartCount } = useContext(AuthContext);
+
 
 
   
