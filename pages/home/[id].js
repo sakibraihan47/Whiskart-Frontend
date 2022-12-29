@@ -6,6 +6,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 import {
   notifyCart,
   notifyCartExist,
@@ -19,47 +20,66 @@ import e from "cors";
 import cart from "../cart";
 import { useRouter } from "next/router";
 
-const artworkInfo = ({ artwork, token, buyer }) => {
+const artworkInfo = ({ artwork, token, buyer, recommend}) => {
+console.log("🚀 ~ file: [id].js:24 ~ artworkInfo ~ recommend", recommend)
+
+  // const check =(recommend)=>{
+  //   console.log("Click Event",recommend)
+  // }
+
+
   console.log("🚀 ~ file: [id].js:23 ~ artworkInfo ~ buyer", buyer);
-  const { user } = useContext(AuthContext);
+  const { user, updateCartCount } = useContext(AuthContext);
   const router = useRouter();
-  const [recArt, setRecArt] = useState([]);
+  // const [recArt, setRecArt] = useState([]);
   const [chkCart, setCheckCart] = useState([]);
   const [cartContent, setCartContent] = useState([]);
   console.log("🚀 ~ file: [id].js:24 ~ artworkInfo ~ chkCart", chkCart);
 
-  useEffect(() => {
-    recommendTo();
-    checkCart();
-  }, [cartContent]);
-  const recommendTo = async () => {
-    try {
-      let res = await fetch("http://localhost:3002/recommendation", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ user: buyer, artwork: artwork._id }),
-      });
-      const recommendationList = await res.json();
-      setRecArt(recommendationList);
-      console.log(
-        "🚀 ~ file: [id].js:44 ~ recommendTo ~ recommendationList",
-        recommendationList
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // useEffect(() => {
+  //   // recommendTo();
+  //   // checkCart();
 
-  const addCart = async (event) => {
-    event.preventDefault();
+  // }, [cartContent]);
+  
+  useEffect(() => {
+    // recommendTo();
+    console.log("🚀 ~ file: [id].js:49 ~ artworkInfo ~ artwork", artwork)
+
+  }, [artwork]);
+  useEffect(() => {
+    // recommendTo();
+    console.log("🚀 ~ file: [id].js:49 ~ artworkInfo ~ artwork", artwork)
+
+  }, [cartContent]);
+  
+  // const recommendTo = async () => {
+  //   try {
+  //     let res = await fetch("http://localhost:3002/recommendation", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({ user: buyer, artwork: artwork._id }),
+  //     });
+  //     const recommendationList = await res.json();
+  //     setRecArt(recommendationList);
+  //     console.log(
+  //       "🚀 ~ file: [id].js:44 ~ recommendTo ~ recommendationList",
+  //       recommendationList
+  //     );
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const addCart = async () => {
+   
     // router.reload(window.location.pathname);
-    if (chkCart === true) {
-      notifyCartExist();
-    } else if (chkCart === false) {
+
+  
       try {
         let res = await fetch("http://localhost:3002/mycart", {
           method: "POST",
@@ -79,12 +99,19 @@ const artworkInfo = ({ artwork, token, buyer }) => {
       } catch (error) {
         console.log(error);
       }
-    }
+    
   };
 
-  ////
+
+
 
   const checkCart = async () => {
+    
+  
+    
+    console.log("🚀 ~ file: [id].js:102 ~ checkCart ~ artwork", artwork)
+      console.log("🚀 ~ file: [id].js:102 ~ checkCart ~ buyer", buyer)
+
     const res = await fetch("http://localhost:3002/checkcart/", {
       method: "POST",
       headers: {
@@ -94,11 +121,20 @@ const artworkInfo = ({ artwork, token, buyer }) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ buyer, artwork }),
+      
     });
 
     const data = await res.json();
     console.log("🚀 ~ file: [id].js:88 ~ checkCart ~ data", data);
     setCheckCart(data);
+
+    if (data === true) {
+      notifyCartExist();
+    } else if (data === false) {
+      addCart()
+      updateCartCount(1)
+    }
+    
   };
 
   return (
@@ -156,8 +192,8 @@ const artworkInfo = ({ artwork, token, buyer }) => {
         </div>
       )}
       {user && user?.role == "buyer" && (
-        <div className="flex h-screen flex-col items-center m-b justify-center px-16 bg-gradient-to-r from-gray-800 to-black">
-          <div className="bg-blue-500">
+        <div className="flex h-screen items-center m-b justify-center px-16 bg-gradient-to-r from-gray-800 to-black">
+          <div className="">
             {/* <a href="#">
               <img
                 className="p-8 rounded-lg"
@@ -190,16 +226,16 @@ const artworkInfo = ({ artwork, token, buyer }) => {
                   {artwork.des}
                 </p>
                 <div className="flex justify-between items-center py-1">
-                  <h1 className="font-bold text-xs  text-amber-100">Genre</h1>
-                  <span className="text-xs font-bold font-raleway uppercase px-2.5 rounded bg-blue-200 text-blue-800 ">
+                  <h1 className="font-bold text-xs mr-1  text-amber-100">Genre</h1>
+                  <span className="text-xs font-bold mr-1  font-raleway uppercase px-2.5 rounded bg-blue-200 text-blue-800 ">
                     {artwork.genre}
                   </span>
-                  <h1 className="font-bold text-xs  text-amber-100">Canvas</h1>
-                  <span className="text-xs font-bold font-raleway uppercase px-2.5 rounded bg-blue-200 text-blue-800 ">
+                  <h1 className="font-bold text-xs mr-1 text-amber-100">Canvas</h1>
+                  <span className="text-xs font-bold mr-1  font-raleway uppercase px-2.5 rounded bg-blue-200 text-blue-800 ">
                     {artwork.canvas}
                   </span>
-                  <h1 className="font-bold  text-xs  text-amber-100">Color</h1>
-                  <span className="text-xs font-bold font-raleway uppercase px-2.5 rounded bg-blue-200 text-blue-800 ">
+                  <h1 className="font-bold  text-xs mr-1  text-amber-100">Color</h1>
+                  <span className="text-xs font-bold mr-1  font-raleway uppercase px-2.5 rounded bg-blue-200 text-blue-800 ">
                     {artwork.color}
                   </span>
                 </div>
@@ -211,7 +247,13 @@ const artworkInfo = ({ artwork, token, buyer }) => {
 
                   {artwork.qty > 0 && (
                     <a
-                      onClick={addCart}
+                      onClick={(e) => {
+                       
+                        console.log("🚀 ~ file: [id].js:245 ~ artworkInfo ~ e", e)
+                        e.preventDefault()
+                        checkCart()
+                      }
+                    }
                       className="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                       Add to cart
@@ -226,7 +268,8 @@ const artworkInfo = ({ artwork, token, buyer }) => {
               </div>
             </div>
           </div>
-          <div className="flex mt-4">
+          {recommend.length >0 && (
+          <div className="flex ml-4 w-72 h-screen justify-center items-center">
             {/* <a href="#">
               <img
                 className="p-8 rounded-lg"
@@ -234,32 +277,44 @@ const artworkInfo = ({ artwork, token, buyer }) => {
                 alt="product image"
               />
             </a> */}
+            
             <div className="container w-full">
-              <div className="  min-h-96  bg-white w-full rounded-xl p-2">
-                <h1 className=" text-l text-rose-400 font-raleway">
+            <h1 className=" text-l uppercase text-center font-bold text-pink-600 font-raleway">
                   Recommended for you
                 </h1>
-                <div className=" flex flex-row p-2 max-w-sm overflow-x-auto">
-                  {recArt.map((recommend) => (
-                    <div>
-                      <div className="w-32 mx-auto px-1">
+              <div className="  min-h-96  bg-gray-800 w-full rounded-xl p-2">
+             
+                <div className=" flex flex-col p-2 max-h-96 overflow-y-auto overflow-x-hidden">
+                  {recommend.map((recommend) => (
+                    <div 
+                    >
+                      <div className="w-48 mx-auto">
+                     
+                      <Link href={"./"+ recommend._id}
+                    >
                         <a className="block relative h-24 overflow-hidden">
+                       
+
                           <img
                             alt="ecommerce"
                             className="object-cover shadow-md object-center rounded w-full h-full block"
                             src={recommend.img}
+                           
                           />
                         </a>
-                        <div className="mt-1">
+                        </Link>
+                        <div className="mb-1">
                           {/* <h3 className="text-pink-500 text-bold text-xs tracking-widest title-font mb-1">
                             {recommend.artist.firstName}{" "}
                             {recommend.artist.lastName}
                           </h3> */}
 
                           <a>
-                            <h2 className="text-gray-400 title-font text-xs font-medium">
+                            {/* onClick={check(recommend)}> */}
+                            <h2 className="text-gray-400 title-font text-s font-medium">
                               {recommend.name}
                             </h2>
+                            
                           </a>
 
                           {/* <p className="text-white title-font text-xs font-medium">
@@ -272,7 +327,9 @@ const artworkInfo = ({ artwork, token, buyer }) => {
                 </div>
               </div>
             </div>
+           
           </div>
+           )}
         </div>
       )}
     </>
@@ -281,6 +338,7 @@ const artworkInfo = ({ artwork, token, buyer }) => {
 
 export const getServerSideProps = async (context) => {
   const token = context.req.cookies.token;
+  console.log("🚀 ~ file: [id].js:292 ~ getServerSideProps ~ token", token)
   const buyer = JSON.parse(context.req.cookies.user).id;
   if (!token) {
     return { redirect: { permanent: true, destination: "/" }, props: {} };
@@ -299,6 +357,25 @@ export const getServerSideProps = async (context) => {
   });
   res = await res.json();
 
+
+
+
+  let rec = await fetch("http://localhost:3002/recommendation", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ user: buyer, artwork: id }),
+      });
+      const recommendationList = await rec.json();
+      // setRecArt(recommendationList);
+      console.log(
+        "🚀 ~ file: [id].js:44 ~ recommendTo ~ recommendationList",
+        recommendationList
+      );
+
   // let rec = await fetch("http://localhost:3002/recommendation/", {
   //   method: "POST",
   //   headers: {
@@ -311,7 +388,7 @@ export const getServerSideProps = async (context) => {
   // rec = await rec.json();
 
   return {
-    props: { artwork: res.artworks, token: token, buyer: buyer },
+    props: { artwork: res.artworks, token: token, buyer: buyer, recommend: recommendationList},
   };
 };
 

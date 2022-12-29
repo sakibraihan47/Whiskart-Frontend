@@ -11,7 +11,7 @@ exports.getRecommended = async (req, res) => {
   const pipeline = [
     {
       $match: {
-        user: mongoose.Types.ObjectId(req.body.user),
+        artwork: mongoose.Types.ObjectId(req.body.artwork),
       },
     },
     {

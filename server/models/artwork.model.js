@@ -4,7 +4,7 @@ const artworkSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     artist: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    qty: { type: String, required: true },
+    qty: { type: Number, required: true },
     des: { type: String, required: true },
     canvas: { type: String, required: true },
     color: { type: String, required: true },
