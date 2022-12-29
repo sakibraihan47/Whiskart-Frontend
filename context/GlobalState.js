@@ -51,7 +51,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => {
     dispatch({
       type: "LOGOUT",
-      payload: { user: null, token: null },
+      payload: { user: null, token: null},
     });
   };
 

@@ -11,6 +11,7 @@ export const useLogout = () => {
     // remove user from storage
     Cookies.remove("user");
     Cookies.remove("token");
+    Cookies.remove("localCartCount");
 
     //dispatch logout action
     // dispatch({ type: "LOGOUT", payload: null });

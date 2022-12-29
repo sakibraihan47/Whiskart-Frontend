@@ -106,9 +106,7 @@ console.log("🚀 ~ file: [id].js:24 ~ artworkInfo ~ recommend", recommend)
 
 
   const checkCart = async () => {
-    
-  
-    
+
     console.log("🚀 ~ file: [id].js:102 ~ checkCart ~ artwork", artwork)
       console.log("🚀 ~ file: [id].js:102 ~ checkCart ~ buyer", buyer)
 
@@ -244,6 +242,7 @@ console.log("🚀 ~ file: [id].js:24 ~ artworkInfo ~ recommend", recommend)
                   <span className="text-xl font-bold text-gray-900 dark:text-pink-600">
                     BDT {artwork.price}
                   </span>
+                
 
                   {artwork.qty > 0 && (
                     <a
@@ -265,6 +264,7 @@ console.log("🚀 ~ file: [id].js:24 ~ artworkInfo ~ recommend", recommend)
                     </a>
                   )}
                 </div>
+               
               </div>
             </div>
           </div>
