@@ -55,13 +55,19 @@ exports.getCartItem = async (req, res) => {
 };
 
 exports.checkCart = async (req, res) => {
+  console.log("🚀 ~ file: cart.controller.js:63 ~ exports.checkCart= ~ req.body.artwork", req.body.artwork)
+  console.log("🚀 ~ file: cart.controller.js:64 ~ exports.checkCart= ~ req.body.buyer,", req.body.buyer)
+
   let cart = await Cart.findOne({
-    artwork: req.body.artwork,
+    artwork: req.body.artwork._id,
     user: req.body.buyer,
   });
-  if (cart == null) {
-    res.status(200).json(false);
-  } else {
+    
+    
+  if (cart == null) {  res.status(200).json(false);
+   } else {
     res.status(200).json(true);
-  }
+ }
+
+  console.log("cart",cart)
 };

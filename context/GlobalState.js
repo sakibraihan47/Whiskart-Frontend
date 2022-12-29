@@ -23,6 +23,7 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducers, {
     user: null,
     token: null,
+    cartCount: parseInt(Cookies.get("localCartCount")) || 0
   });
 
   useEffect(() => {
@@ -54,8 +55,16 @@ export const AuthContextProvider = ({ children }) => {
     });
   };
 
+  const updateCartCount = (cartCount) => { 
+    dispatch({
+      type:"UPDATE_CART_COUNT",
+      payload:{cartCount}
+
+    })
+   }
+
   return (
-    <AuthContext.Provider value={{ ...state, dispatch, login, logout }}>
+    <AuthContext.Provider value={{ ...state, dispatch, login, logout,updateCartCount }}>
       {children}
     </AuthContext.Provider>
   );

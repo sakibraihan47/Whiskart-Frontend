@@ -3,6 +3,7 @@ import Counter from "../components/Counter";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { NavbarDynamic } from "../components/Navbar/NavbarDynamic";
+import { AuthContext } from "../context/GlobalState";
 
 const cart = ({ cart }) => {
   //   const UserContext = createContext()
@@ -20,6 +21,13 @@ const cart = ({ cart }) => {
   //     <></>
   //    );
   //   }}
+
+  
+
+  const { updateCartCount } = useContext(AuthContext);
+
+
+  
 
   let arr = [];
   arr = cart.map((cart) => cart.artwork.price);
@@ -40,9 +48,15 @@ const cart = ({ cart }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
+     
+      
     });
+
+   
     router.reload(window.location.pathname);
   };
+
+    
 
   // const deleteThis = async () => {
   //   try {
@@ -114,6 +128,8 @@ const cart = ({ cart }) => {
                         value={cart.artwork._id}
                         onClick={() => {
                           set(cart._id);
+  updateCartCount(-1)
+
                         }}
                       >
                         Remove
@@ -153,6 +169,10 @@ const cart = ({ cart }) => {
                 </div>
               ))}
             </div>
+
+            {cart.length == 0 && (
+              <div className="text-center font-bold font-raleway uppercase text-xl text-gray-700 tracking-widest mt-12 mb-12 " >No Items in your Cart</div>
+            )}
             <a
               href="/homepage"
               className="flex font-semibold text-indigo-600 text-sm mt-10"
