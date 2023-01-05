@@ -6,14 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const NavbarDynamic = () => {
-
-
-
- const[item,setItem]=useState([])
- 
-
-
-
+  const [item, setItem] = useState([]);
 
   const activeLink = "text-blue-400 ";
   const normalLink = "text-white";
@@ -23,7 +16,7 @@ export const NavbarDynamic = () => {
   const currentRoute = router.pathname;
   const { logout } = useLogout();
 
-  const { user,cartCount } = useContext(AuthContext);
+  const { user, cartCount } = useContext(AuthContext);
 
   const handleClick = () => {
     logout();
@@ -147,13 +140,13 @@ export const NavbarDynamic = () => {
               <span className="font-raleway  self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 WHiSKART
               </span>
+              {user.cartContent}
             </a>
 
             <div className="flex md:order-2">
               <div className="block relative">
                 <a className="text-green-300 uppercase text-xl p-2 inline-flex items-center">
                   {user.firstName}
-                
                 </a>
                 <a className="text-white text-xl p-2 inline-flex items-center">
                   {user.email}
@@ -240,8 +233,10 @@ export const NavbarDynamic = () => {
                       }`}
                     >
                       My Cart
-                      <span className="text-pink-400"> {`(${ cartCount>0? cartCount:""})`}</span>
-                     
+                      <span className="text-pink-400">
+                        {" "}
+                        {`(${cartCount > 0 ? cartCount : ""})`}
+                      </span>
                     </a>
                     {/* {cart.length} */}
                   </Link>
@@ -298,4 +293,3 @@ export const NavbarDynamic = () => {
     </>
   );
 };
-

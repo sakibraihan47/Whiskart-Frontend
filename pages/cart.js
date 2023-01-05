@@ -22,14 +22,10 @@ const cart = ({ cart }) => {
   //    );
   //   }}
 
-  
-
   const { updateCartCount } = useContext(AuthContext);
+  const len = cart.length;
 
-
-
-  
-
+  console.log("🚀 ~ file: cart.js:27 ~ cart ~ len", len);
   let arr = [];
   arr = cart.map((cart) => cart.artwork.price);
   let sum = 0;
@@ -37,7 +33,6 @@ const cart = ({ cart }) => {
   for (i = 0; i < arr.length; i++) {
     sum = arr[i] + sum;
   }
-
   // const [id, setItem] = useState();
   const router = useRouter();
 
@@ -49,15 +44,12 @@ const cart = ({ cart }) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${Cookies.get("token")}`,
       },
-     
-      
     });
 
-   
+    updateCartCount(-1);
+
     router.reload(window.location.pathname);
   };
-
-    
 
   // const deleteThis = async () => {
   //   try {
@@ -129,8 +121,6 @@ const cart = ({ cart }) => {
                         value={cart.artwork._id}
                         onClick={() => {
                           set(cart._id);
-  // updateCartCount(-1)
-
                         }}
                       >
                         Remove
@@ -172,7 +162,9 @@ const cart = ({ cart }) => {
             </div>
 
             {cart.length == 0 && (
-              <div className="text-center font-bold font-raleway uppercase text-xl text-gray-700 tracking-widest mt-12 mb-12 " >No Items in your Cart</div>
+              <div className="text-center font-bold font-raleway uppercase text-xl text-gray-700 tracking-widest mt-12 mb-12 ">
+                No Items in your Cart
+              </div>
             )}
             <a
               href="/homepage"

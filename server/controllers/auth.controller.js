@@ -2,6 +2,7 @@ const userModel = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const Cart = require("../models/cart.model");
 dotenv.config();
 
 //sign-up controller
@@ -62,6 +63,7 @@ exports.signin = async (req, res) => {
 
     if (user && (await bcrypt.compare(pass, user.pass))) {
       // Create token
+
       const token = jwt.sign(
         { user_id: user._id, email: user.email, role: user.role },
         process.env.API_SECRET,
@@ -79,7 +81,7 @@ exports.signin = async (req, res) => {
           id: user._id,
           email: user.email,
           role: user.role,
-          firstName: user.firstName, 
+          firstName: user.firstName,
         },
         message: "Login Success!",
         accessToken: token,
