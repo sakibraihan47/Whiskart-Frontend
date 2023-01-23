@@ -203,7 +203,7 @@ export const NavbarDynamic = () => {
                     </a>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link href="/recent">
                     <a
                       className={`block py-2 pr-4 pl-3 text-white text-xl bg-blue-700 rounded md:bg-transparent md:p-0 hover:text-pink-500 ${
@@ -213,7 +213,7 @@ export const NavbarDynamic = () => {
                       Recent
                     </a>
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <Link href="/artistList">
                     <a
@@ -233,10 +233,10 @@ export const NavbarDynamic = () => {
                       }`}
                     >
                       My Cart
-                      <span className="text-pink-400">
+                      {/* <span className="text-pink-400">
                         {" "}
                         {`(${cartCount > 0 ? cartCount : ""})`}
-                      </span>
+                      </span> */}
                     </a>
                     {/* {cart.length} */}
                   </Link>
